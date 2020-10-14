@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">smart_home_monitor</string>
+    <string name="appTitleString">Smart Home Monitor</string>
+    <string name="signupTitleString">Don\'t have an account? Sign up</string>
+    <string name="signInGoogleString">Google</string>
+    <string name="signInFacebookString">Facebook</string>
+    <string name="orButtonString">OR</string>
+    <string name="loginButtonString">Login</string>
+    <string name="forgotPasswordTitleString">Forgot Password?</string>
+    <string name="passwordFieldPlaceholderString">Password</string>
+    <string name="emailFieldPlaceholderString">E-mail</string>
+    <string name="appLogoContentDescriptionString">Smart home monitor logo</string>
 </resources>
