@@ -11,4 +11,7 @@
     <string name="signInGoogleDesc">Sign in with google logo</string>
     <string name="dontHaveAccountString">Don\'t have an account?</string>
     <string name="createAccountString">Create account</string>
+    <string name="nameHint">Name</string>
+    <string name="registerBtnString">Create Account</string>
+    <string name="registerSubTitle">Enter your information to create an account</string>
 </resources>
