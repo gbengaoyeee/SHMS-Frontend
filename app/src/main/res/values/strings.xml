@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">smart_home_monitor</string>
+    <string name="app_name">Smarty</string>
     <string name="appTitleString">Smart Home Monitor</string>
     <string name="signupTitleString">Don\'t have an account? Sign up</string>
     <string name="signInGoogleString">Google</string>

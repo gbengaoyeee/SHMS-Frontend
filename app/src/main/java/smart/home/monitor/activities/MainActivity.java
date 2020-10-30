@@ -1,6 +1,8 @@
-package smart.home.monitor;
+package smart.home.monitor.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import smart.home.monitor.R;
+import smart.home.monitor.activities.HomePage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,11 +23,11 @@ public class MainActivity extends AppCompatActivity {
                 openHomePage();
             }
         });
-}
+    }
 
-public void openHomePage(){
-    Intent intent = new Intent(this, HomePage.class);
-    startActivity(intent);
-}
+    public void openHomePage(){
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
+    }
 
 }

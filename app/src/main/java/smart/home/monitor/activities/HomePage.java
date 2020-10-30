@@ -1,6 +1,7 @@
-package smart.home.monitor;
+package smart.home.monitor.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import smart.home.monitor.R;
 
 import android.os.Bundle;
 
