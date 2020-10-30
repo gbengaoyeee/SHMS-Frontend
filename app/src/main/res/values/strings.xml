@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Smarty</string>
-    <string name="appTitleString">Smart Home Monitor</string>
-    <string name="signupTitleString">Don\'t have an account? Sign up</string>
-    <string name="signInGoogleString">Google</string>
-    <string name="signInFacebookString">Facebook</string>
-    <string name="orButtonString">OR</string>
-    <string name="loginButtonString">Login</string>
-    <string name="forgotPasswordTitleString">Forgot Password?</string>
-    <string name="passwordFieldPlaceholderString">Password</string>
-    <string name="emailFieldPlaceholderString">E-mail</string>
-    <string name="appLogoContentDescriptionString">Smart home monitor logo</string>
+    <string name="loginTitle">Welcome to Smarty</string>
+    <string name="loginSubTitle">Please sign in to view your devices</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="forgotPasswordString">Forgot password?</string>
+    <string name="signInBtnString">Sign In</string>
+    <string name="orString">OR</string>
+    <string name="signInFacebookDesc">Sign in with facebook logo</string>
+    <string name="signInGoogleDesc">Sign in with google logo</string>
+    <string name="dontHaveAccountString">Don\'t have an account?</string>
+    <string name="createAccountString">Create account</string>
 </resources>

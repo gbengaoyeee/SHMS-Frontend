@@ -4,153 +4,136 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5167AC"
+    android:background="@color/primaryWhite"
     tools:context=".activities.LoginActivity">
 
-
-    <ImageView
-        android:id="@+id/appLogo"
-        android:layout_width="66dp"
-        android:layout_height="56dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="29dp"
-        android:contentDescription="@string/appLogoContentDescriptionString"
-        app:srcCompat="@drawable/home_icon" />
-
-    <View
-        android:id="@+id/rectangle_2"
-        android:layout_width="343dp"
-        android:layout_height="519dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="105dp"
-        android:background="#fff" />
-
-    <EditText
-        android:id="@+id/emailField"
-        android:layout_width="237dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="162dp"
-        android:autofillHints=""
-        android:backgroundTint="#fff"
-        android:ems="10"
-        android:hint="@string/emailFieldPlaceholderString"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:textAlignment="center" />
-
-    <EditText
-        android:id="@+id/passwordField"
-        android:layout_width="242dp"
-        android:layout_height="56dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="83dp"
-        android:layout_marginTop="240dp"
-        android:autofillHints=""
-        android:backgroundTint="#fff"
-        android:ems="10"
-        android:hint="@string/passwordFieldPlaceholderString"
-        android:inputType="textPassword"
-        android:singleLine="true"
-        android:textAlignment="center" />
-
     <TextView
-        android:id="@+id/forgotPasswordTitle"
-        android:layout_width="117dp"
-        android:layout_height="26dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="340dp"
-        android:text="@string/forgotPasswordTitleString"
-        android:textColor="#5167AC"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="260dp"
-        android:layout_height="35dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="395dp"
-        android:background="@drawable/login_btn"
-        android:text="@string/loginButtonString"
-        android:textColor="#FFFF"
-        android:textColorLink="#E5E5E5" />
-
-    <Button
-        android:id="@+id/orButton"
-        android:layout_width="43dp"
-        android:layout_height="28dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="457dp"
-        android:background="@drawable/login_btn"
-        android:backgroundTint="@android:color/darker_gray"
-        android:text="@string/orButtonString"
-        android:textColor="@android:color/background_dark"
-        android:textColorLink="#E5E5E5" />
-
-    <Button
-        android:id="@+id/signInFacebook"
-        android:layout_width="140dp"
-        android:layout_height="31dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="514dp"
-        android:background="@drawable/login_btn"
-        android:text="@string/signInFacebookString"
-        android:textColor="#FFFF"
-        android:textColorLink="#E5E5E5" />
-
-    <Button
-        android:id="@+id/signInGoogle"
-        android:layout_width="137dp"
-        android:layout_height="28dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="226dp"
-        android:layout_marginTop="519dp"
-        android:background="@drawable/login_btn"
-        android:backgroundTint="#EF1919"
-        android:text="@string/signInGoogleString"
-        android:textColor="#FFFF"
-        android:textColorLink="#E5E5E5" />
-
-    <TextView
-        android:id="@+id/signupTitle"
-        android:layout_width="202dp"
-        android:layout_height="49dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="650dp"
-        android:text="@string/signupTitleString"
-        android:textColor="#fff"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/appTitle"
-        android:layout_width="248dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="38dp"
-        android:text="@string/appTitleString"
-        android:textColor="@android:color/background_light"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="90sp"
+        android:text="@string/loginTitle"
+        android:textColor="@color/primaryBlack"
         android:textSize="24sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="130sp"
+        android:text="@string/loginSubTitle"
+        android:textColor="@color/primaryGreyTwo"
+        android:textSize="14sp"/>
+
+    <EditText
+        android:id="@+id/loginEmail"
+        android:layout_width="370sp"
+        android:layout_height="40sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="190sp"
+        android:background="@color/editTextColor"
+        android:inputType="textEmailAddress"
+        android:hint="@string/emailHint"
+        android:textColor="@color/primaryBlack"
+        android:textColorHint="@color/primaryGreyTwo"
+        android:autofillHints="@string/emailHint" />
+
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="370sp"
+        android:layout_height="40sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="240sp"
+        android:background="@color/editTextColor"
+        android:hint="@string/passwordHint"
+        android:inputType="textPassword"
+        android:textColor="@color/primaryBlack"
+        android:textColorHint="@color/primaryGreyTwo"
+        android:autofillHints="@string/passwordHint" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="245sp"
+        android:layout_marginTop="290sp"
+        android:text="@string/forgotPasswordString"
+        android:textColor="@color/primaryGreyTwo"
+        android:textSize="18sp" />
+
+    <Button
+        android:layout_width="370sp"
+        android:layout_height="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="333sp"
+        android:background="@color/primaryGreen"
+        android:text="@string/signInBtnString"
+        android:textColor="@color/primaryLogoColor"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="400sp"
+        android:layout_marginStart="190sp"
+        android:text="@string/orString"
+        android:textColor="@color/primaryGreyTwo"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="440sp"
+        android:layout_marginStart="95sp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/facebook_logo"
+        android:contentDescription="@string/signInFacebookDesc" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="440sp"
+        android:layout_marginStart="245sp"
+        android:src="@drawable/google_logo"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/signInGoogleDesc"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="635sp"
+        android:layout_marginStart="125sp"
+        android:text="@string/dontHaveAccountString"
+        android:textColor="@color/primaryGreyTwo"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="655sp"
+        android:layout_marginStart="145sp"
+        android:text="@string/createAccountString"
+        android:textStyle="bold"
+        android:textColor="@color/primaryGreen"
+        android:textSize="16sp" />
 
 </android.widget.RelativeLayout>

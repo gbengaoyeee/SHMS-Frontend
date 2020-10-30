@@ -1,10 +1,13 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/primaryGreen</item>-->
+<!--        <item name="colorPrimaryDark">@color/primaryGreyOne</item>-->
+<!--        <item name="colorAccent">@color/primaryGreyThree</item>-->
+<!--    </style>-->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primaryGreen</item>
-        <item name="colorPrimaryDark">@color/primaryGreyOne</item>
-        <item name="colorAccent">@color/primaryGreyThree</item>
     </style>
 
     <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
