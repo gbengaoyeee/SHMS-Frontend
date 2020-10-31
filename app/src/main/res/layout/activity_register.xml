@@ -7,6 +7,22 @@
     tools:context=".activities.RegisterActivity"
     android:background="@color/primaryWhite">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/registerToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="25dp"
+        android:background="@color/primaryGreen"
+        android:gravity="bottom"
+        android:theme="@style/RegisterPage"
+        app:layout_constraintBottom_toTopOf="@+id/registerPageTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:title="@string/registerPageToolbarTitle"
+        app:titleTextAppearance="@style/Toolbar_TextAppearance" />
+
     <TextView
         android:id="@+id/registerPageTitle"
         android:layout_width="0dp"

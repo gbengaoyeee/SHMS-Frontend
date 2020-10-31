@@ -10,8 +10,14 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="RegisterPage" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="RegisterPage" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/primaryGreen</item>
+    </style>
+
+    <style name="Toolbar_TextAppearance">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/primaryWhite</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
