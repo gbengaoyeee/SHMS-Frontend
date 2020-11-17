@@ -15,4 +15,10 @@
     <string name="registerBtnString">Create Account</string>
     <string name="registerSubTitle">Enter your information to create an account</string>
     <string name="registerPageToolbarTitle">Register</string>
+    <string name="tabItem1String">Devices</string>
+    <string name="tabItem2String">Add Device</string>
+    <string name="addDeviceSubHeaderString">Add a new device by entering the device id and name of device</string>
+    <string name="addDeviceHeaderString">Add a device</string>
+    <string name="registrationCodeHint">Device registration code</string>
+    <string name="deviceNameHint">"John's Room"</string>
 </resources>

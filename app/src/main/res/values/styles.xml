@@ -1,13 +1,20 @@
 <resources>
     <!-- Base application theme. -->
 <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!-- Customize your theme here. -->
 <!--        <item name="colorPrimary">@color/primaryGreen</item>-->
 <!--        <item name="colorPrimaryDark">@color/primaryGreyOne</item>-->
 <!--        <item name="colorAccent">@color/primaryGreyThree</item>-->
 <!--    </style>-->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="Homepage" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryGreen</item>
+        <item name="colorPrimaryDark">@color/primaryGreyOne</item>
+        <item name="colorAccent">@color/primaryGreyThree</item>
     </style>
 
     <style name="RegisterPage" parent="Theme.AppCompat.Light">
@@ -22,5 +29,27 @@
 
     <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splashscreen</item>
+    </style>
+
+    <style name="HeaderStyle">
+        <item name="android:textColor">@color/primaryBlack</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SubHeaderStyle">
+        <item name="android:textColor">@color/primaryGreyTwo</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:background">@color/editTextColor</item>
+        <item name="android:textColorHint">@color/primaryGreyTwo</item>
+        <item name="android:paddingHorizontal">10dp</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:textColor">@color/primaryLogoColor</item>
+        <item name="android:background">@color/primaryGreen</item>
     </style>
 </resources>

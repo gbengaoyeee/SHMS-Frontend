@@ -12,6 +12,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        startActivity(new Intent(this, LoginActivity.class));
+//        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, HomePage.class));
     }
 }

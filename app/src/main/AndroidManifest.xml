@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".activities.LoginActivity" android:theme="@style/AppTheme"/>
         <activity android:name=".activities.RegisterActivity"/>
-        <activity android:name=".activities.HomePage"/>
+        <activity android:name=".activities.HomePage" android:theme="@style/Homepage"/>
     </application>
 
 </manifest>
