@@ -15,4 +15,6 @@
     <string name="registerBtnString">Create Account</string>
     <string name="registerSubTitle">Enter your information to create an account</string>
     <string name="registerPageToolbarTitle">Register</string>
+    <string name="temperature_30_c">Temperature: 30 C</string>
+    <string name="arrow7">ARROW7</string>
 </resources>

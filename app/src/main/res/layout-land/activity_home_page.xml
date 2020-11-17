@@ -10,7 +10,7 @@
         android:id="@+id/textView6"
         android:layout_width="170dp"
         android:layout_height="49dp"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="199dp"
         android:layout_marginTop="227dp"
@@ -23,9 +23,9 @@
         android:id="@+id/textView7"
         android:layout_width="214dp"
         android:layout_height="45dp"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="193dp"
+        android:layout_marginLeft="193dp"
         android:layout_marginTop="349dp"
         android:text="Gas Levels: Safe"
         android:textColor="@android:color/background_dark"
@@ -36,7 +36,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="65dp"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="199dp"
         android:layout_marginTop="475dp"
@@ -53,8 +53,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="103dp"
         android:layout_marginTop="120dp"
-        app:srcCompat="@drawable/arrow"
-        android:contentDescription="Arrow" />
+        app:srcCompat="@drawable/arrow" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -62,10 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="91dp"
+        android:layout_marginLeft="91dp"
         android:layout_marginTop="487dp"
-        app:srcCompat="@drawable/arrow"
-        android:contentDescription="Arrow2" />
+        app:srcCompat="@drawable/arrow" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -75,8 +73,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="91dp"
         android:layout_marginTop="356dp"
-        app:srcCompat="@drawable/arrow"
-        android:contentDescription="Arrow4" />
+        app:srcCompat="@drawable/arrow" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -86,8 +83,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="19dp"
         android:layout_marginTop="94dp"
-        app:srcCompat="@drawable/temp"
-        android:contentDescription="Arrow5" />
+        app:srcCompat="@drawable/temp" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -97,8 +93,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="329dp"
-        app:srcCompat="@drawable/humid"
-        android:contentDescription="humid" />
+        app:srcCompat="@drawable/humid" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -108,8 +103,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="19dp"
         android:layout_marginTop="211dp"
-        app:srcCompat="@drawable/gas"
-        android:contentDescription="gas" />
+        app:srcCompat="@drawable/gas" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -117,10 +111,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="457dp"
-        app:srcCompat="@drawable/dist"
-        android:contentDescription="Dist" />
+        app:srcCompat="@drawable/dist" />
 
     <TextView
         android:id="@+id/textView4"
@@ -142,20 +135,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="102dp"
+        android:layout_marginLeft="102dp"
         android:layout_marginTop="238dp"
-        app:srcCompat="@drawable/arrow"
-        android:contentDescription="@string/arrow7" />
+        app:srcCompat="@drawable/arrow" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="191dp"
+        android:layout_marginLeft="191dp"
         android:layout_marginTop="121dp"
-        android:text="@string/temperature_30_c"
+        android:text="Temperature: 30 C "
         android:textColor="@android:color/background_dark"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -191,5 +183,23 @@
         android:layout_marginTop="824dp"
         app:srcCompat="@drawable/right_arr" />
 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 </android.widget.RelativeLayout>
