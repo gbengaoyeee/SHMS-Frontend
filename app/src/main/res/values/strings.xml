@@ -17,4 +17,15 @@
     <string name="registerPageToolbarTitle">Register</string>
     <string name="temperature_30_c">Temperature: 30 C</string>
     <string name="arrow7">ARROW7</string>
+    <string name="gas">gas</string>
+    <string name="humidity_24">Humidity 24 %</string>
+    <string name="humid">humid</string>
+    <string name="dist">Dist</string>
+    <string name="arrow5">Arrow5</string>
+    <string name="sensor_readings">Sensor Readings</string>
+    <string name="no_trespassers">No Trespassers</string>
+    <string name="gas_levels_safe">Gas Levels: Safe</string>
+    <string name="arrow4">Arrow4</string>
+    <string name="arrow2">Arrow2</string>
+    <string name="arrow">Arrow</string>
 </resources>
