@@ -20,4 +20,5 @@
     <string name="addDeviceHeaderString">" Ajouter un périphérique"</string>
     <string name="registrationCodeHint">Code d\'enregistrement de l\'appareil</string>
     <string name="deviceNameHint">Chambre de John</string>
+    <string name="addDeviceBtnString">Ajouter Un Appareil</string>
 </resources>
