@@ -7,8 +7,8 @@
     <string name="forgotPasswordString">Forgot password?</string>
     <string name="signInBtnString">Sign In</string>
     <string name="orString">OR</string>
-    <string name="signInFacebookDesc">Sign in with facebook logo</string>
-    <string name="signInGoogleDesc">Sign in with google logo</string>
+    <string name="signInFacebookDesc" translatable="false">Sign in with facebook logo</string>
+    <string name="signInGoogleDesc" translatable="false">Sign in with google logo</string>
     <string name="dontHaveAccountString">Don\'t have an account?</string>
     <string name="createAccountString">Create account</string>
     <string name="nameHint">Name</string>
@@ -21,4 +21,6 @@
     <string name="addDeviceHeaderString">Add a device</string>
     <string name="registrationCodeHint">Device registration code</string>
     <string name="deviceNameHint">"John's Room"</string>
+    <string name="add_device">Add Device</string>
+    <string name="add_device">Add Device</string>
 </resources>
