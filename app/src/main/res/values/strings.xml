@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Smarty</string>
     <string name="loginTitle">Welcome to Smarty</string>
     <string name="loginSubTitle">Please sign in to view your devices</string>
@@ -21,6 +21,6 @@
     <string name="addDeviceHeaderString">Add a device</string>
     <string name="registrationCodeHint">Device registration code</string>
     <string name="deviceNameHint">"John's Room"</string>
-    <string name="add_device">Add Device</string>
-    <string name="add_device">Add Device</string>
+    <string name="add_device" tools:ignore="DuplicateDefinition">Add Device</string>
+    <string name="add_device" tools:ignore="DuplicateDefinition">Add Device</string>
 </resources>
