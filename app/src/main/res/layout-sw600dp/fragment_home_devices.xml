@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryWhite"
+    tools:context=".activities.HomeDevicesFragment">
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="43%"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="442dp" />
+
+    <TextView
+        android:id="@+id/nameView"
+        android:layout_width="120dp"
+        android:layout_height="49dp"
+        android:text="----------"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="219dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="85dp"
+        android:layout_height="51dp"
+        android:text="device name:"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="88dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="device code:"
+        android:textColor="@color/primaryBlack"
+        android:textColorLink="@color/primaryBlack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.079" />
+
+    <Button
+        android:id="@+id/DeviceInfobtn"
+        android:layout_width="160dp"
+        android:layout_height="68dp"
+        android:backgroundTint="@color/primaryGreen"
+        android:text="device info"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="680dp"
+        tools:layout_editor_absoluteY="268dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="87dp"
+        android:layout_height="22dp"
+        android:text="Temperature:"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="397dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="88dp"
+        android:layout_height="21dp"
+        android:text="Humidity:"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="440dp" />
+
+    <TextView
+        android:id="@+id/codeView"
+        android:layout_width="120dp"
+        android:layout_height="49dp"
+        android:text="----------"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="141dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="301dp"
+        android:layout_height="59dp"
+        android:text="Kitchen Device"
+        android:textColor="@color/primaryBlack"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="352dp"
+        tools:layout_editor_absoluteY="42dp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30 C"
+        android:textColor="@color/primaryBlack"
+        tools:layout_editor_absoluteX="214dp"
+        tools:layout_editor_absoluteY="397dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Smarty</string>
+    <string name="loginTitle">Welcome to Smarty</string>
+    <string name="loginSubTitle">Please sign in to view your devices</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="forgotPasswordString">Forgot password?</string>
+    <string name="signInBtnString">Sign In</string>
+    <string name="orString">OR</string>
+    <string name="signInFacebookDesc" translatable="false">Sign in with facebook logo</string>
+    <string name="signInGoogleDesc" translatable="false">Sign in with google logo</string>
+    <string name="dontHaveAccountString">Don\'t have an account?</string>
+    <string name="createAccountString">Create account</string>
+    <string name="nameHint">Name</string>
+    <string name="registerBtnString">Create Account</string>
+    <string name="registerSubTitle">Enter your information to create an account</string>
+    <string name="registerPageToolbarTitle">Register</string>
+    <string name="tabItem1String">Devices</string>
+    <string name="tabItem2String">Add Device</string>
+    <string name="addDeviceSubHeaderString">Add a new device by entering the device id and name of device</string>
+    <string name="addDeviceHeaderString">Add a device</string>
+    <string name="registrationCodeHint">Device registration code</string>
+    <string name="deviceNameHint">"John's Room"</string>
+    <string name="addDeviceBtnString">Add Device</string>
+    <string name="add_device" />
+</resources>

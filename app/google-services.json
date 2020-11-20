@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "966262261891",
+    "firebase_url": "https://smarty-d665c.firebaseio.com",
+    "project_id": "smarty-d665c",
+    "storage_bucket": "smarty-d665c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966262261891:android:7ef034ab630e67012db3b6",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966262261891-1r3ig16d3583unekpb9aog9tkq49ckve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdO8jM-6Ec7DfsnJCOhm33yuu8g-Dd9JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966262261891-1r3ig16d3583unekpb9aog9tkq49ckve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966262261891:android:7c66e81f88b8b3762db3b6",
+        "android_client_info": {
+          "package_name": "smart.home.monitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966262261891-1r3ig16d3583unekpb9aog9tkq49ckve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdO8jM-6Ec7DfsnJCOhm33yuu8g-Dd9JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966262261891-1r3ig16d3583unekpb9aog9tkq49ckve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
