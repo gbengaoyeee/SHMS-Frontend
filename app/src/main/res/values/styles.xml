@@ -17,6 +17,10 @@
         <item name="colorAccent">@color/primaryGreyThree</item>
     </style>
 
+    <style name="LoginPage" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primaryGreen</item>
+    </style>
+
     <style name="RegisterPage" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/primaryGreen</item>
     </style>
@@ -42,14 +46,19 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="EditTextStyle">
-        <item name="android:background">@color/editTextColor</item>
-        <item name="android:textColorHint">@color/primaryGreyTwo</item>
-        <item name="android:paddingHorizontal">10dp</item>
-    </style>
-
     <style name="ButtonStyle">
         <item name="android:textColor">@color/primaryLogoColor</item>
         <item name="android:background">@color/primaryGreen</item>
+    </style>
+
+    <style name="ReadingsSubtitleStyle">
+        <item name="android:textColor">@color/primaryGreyThree</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:background">@color/editTextColor</item>
+        <item name="android:textColorHint">@color/primaryGreyTwo</item>
+        <item name="android:textColor">@color/primaryBlack</item>
     </style>
 </resources>

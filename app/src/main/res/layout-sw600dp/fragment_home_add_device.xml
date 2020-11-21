@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/add_device"
+        android:text="@string/addDeviceBtnString"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="@+id/editText2"
@@ -23,6 +23,7 @@
     <EditText
         android:id="@+id/editText2"
         style="@style/EditTextStyle"
+        android:paddingHorizontal="15dp"
         android:layout_width="0dp"
         android:layout_height="50sp"
         android:layout_marginTop="20dp"
@@ -36,6 +37,7 @@
     <EditText
         android:id="@+id/editText"
         style="@style/EditTextStyle"
+        android:paddingHorizontal="15dp"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"

@@ -1,6 +1,7 @@
 package smart.home.monitor.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,11 +9,13 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import smart.home.monitor.R;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Toolbar;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +67,25 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.logoutMsg)
+                .setPositiveButton(R.string.yesString, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // TO-DO
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.noString, null);
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
 

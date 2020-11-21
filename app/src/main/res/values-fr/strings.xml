@@ -20,5 +20,13 @@
     <string name="addDeviceHeaderString">" Ajouter un périphérique"</string>
     <string name="registrationCodeHint">Code d\'enregistrement de l\'appareil</string>
     <string name="deviceNameHint">Chambre de John</string>
-    <string name="add_device">" ajouter un appareil"</string>
+    <string name="addDeviceBtnString">Ajouter Un Appareil</string>
+    <string name="logoutMsg">Se déconnecter?</string>
+    <string name="yesString">Oui</string>
+    <string name="noString">Non</string>
+    <string name="signUpSuccessMsg">Inscription réussie!</string>
+    <string name="signUpFailureMsg">Impossible de créer un compte</string>
+    <string name="okString">D\'accord</string>
+    <string name="signInFailureMsg">Impossible de se connecter. Veuillez vérifier vos informantions d\'identification</string>
+    <string name="emptyCreds">Veuillez vous assurer que touts les champs sont remplis</string>
 </resources>
