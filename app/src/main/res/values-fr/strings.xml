@@ -22,6 +22,11 @@
     <string name="deviceNameHint">Chambre de John</string>
     <string name="addDeviceBtnString">Ajouter Un Appareil</string>
     <string name="logoutMsg">Se déconnecter?</string>
-    <string name="logoutOption1">Oui</string>
-    <string name="logoutOption2">Non</string>
+    <string name="yesString">Oui</string>
+    <string name="noString">Non</string>
+    <string name="signUpSuccessMsg">Inscription réussie!</string>
+    <string name="signUpFailureMsg">Impossible de créer un compte</string>
+    <string name="okString">D\'accord</string>
+    <string name="signInFailureMsg">Impossible de se connecter. Veuillez vérifier vos informantions d\'identification</string>
+    <string name="emptyCreds">Veuillez vous assurer que touts les champs sont remplis</string>
 </resources>

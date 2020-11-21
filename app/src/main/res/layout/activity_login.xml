@@ -157,7 +157,7 @@
 
     <TextView
         android:id="@+id/dontHaveAcct"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -165,18 +165,20 @@
         android:text="@string/dontHaveAccountString"
         android:textColor="@color/primaryGreyTwo"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/createAcct"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/createAcctTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/createAcct"
-        android:layout_width="wrap_content"
+        android:id="@+id/createAcctTV"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="50dp"
+        android:gravity="center"
         android:text="@string/createAccountString"
         android:textColor="@color/primaryGreen"
         android:textSize="16sp"

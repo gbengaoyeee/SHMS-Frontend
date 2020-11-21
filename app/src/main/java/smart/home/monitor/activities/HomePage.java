@@ -15,6 +15,7 @@ import android.widget.Toolbar;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,16 +71,18 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.logoutMsg)
-                .setPositiveButton(R.string.logoutOption1, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yesString, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        // TO-DO
+                        FirebaseAuth.getInstance().signOut();
                         finish();
                     }
                 })
-                .setNegativeButton(R.string.logoutOption2, null);
+                .setNegativeButton(R.string.noString, null);
 
         AlertDialog alert = builder.create();
         alert.show();
