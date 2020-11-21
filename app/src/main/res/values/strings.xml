@@ -22,4 +22,7 @@
     <string name="registrationCodeHint">Device registration code</string>
     <string name="deviceNameHint">"John's Room"</string>
     <string name="addDeviceBtnString">Add Device</string>
+    <string name="logoutMsg">Logout?</string>
+    <string name="logoutOption1">Yes</string>
+    <string name="logoutOption2">No</string>
 </resources>

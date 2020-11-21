@@ -1,6 +1,7 @@
 package smart.home.monitor.activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import smart.home.monitor.R;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Toolbar;
 
@@ -64,6 +66,23 @@ public class HomePage extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.logoutMsg)
+                .setPositiveButton(R.string.logoutOption1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.logoutOption2, null);
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
 

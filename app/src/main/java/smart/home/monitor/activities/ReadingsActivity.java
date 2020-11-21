@@ -14,5 +14,9 @@ public class ReadingsActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_readings);
+
+        temperatureReading = findViewById(R.id.temperatureReading);
+        gasReading = findViewById(R.id.gasReading);
+        humidityReading = findViewById(R.id.humidityReading);
     }
 }
