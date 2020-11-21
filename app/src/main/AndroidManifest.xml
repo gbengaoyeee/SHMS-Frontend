@@ -20,6 +20,7 @@
         <activity android:name=".activities.LoginActivity" android:theme="@style/AppTheme"/>
         <activity android:name=".activities.RegisterActivity"/>
         <activity android:name=".activities.HomePage" android:theme="@style/Homepage"/>
+        <activity android:name=".activities.ReadingsActivity" />
     </application>
 
 </manifest>
