@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "361152207319",
+    "firebase_url": "https://smart-home-monitor-5fbbb.firebaseio.com",
+    "project_id": "smart-home-monitor-5fbbb",
+    "storage_bucket": "smart-home-monitor-5fbbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361152207319:android:0f1f495304de1c63ef1392",
+        "android_client_info": {
+          "package_name": "smart.home.monitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361152207319-6ut8dh64lk0kb9flgmkv2dqdmrdatdmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFwmKxtdjWbppX7tGiVKQEvzP_18Tc6oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "361152207319-6ut8dh64lk0kb9flgmkv2dqdmrdatdmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
