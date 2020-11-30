@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,18 +36,29 @@ public class LoginActivity extends AppCompatActivity {
     ImageView googleIcon;
     Button signInBtn;
     FirebaseAuth mAuth;
-
+    private GoogleSignInClient mGoogleSignInClient;
+    private ActivityGoogleBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        findViewById(R.id.sign_in_button).setOnClickListener((View.OnClickListener) this);
+        mBinding = ActivityGoogleBinding.inflate(getLayoutInflater());
+        setContentView(mBinding.getRoot());
+        setProgressBar(mBinding.progressBar);
 
+        // Button listeners
+        mBinding.@+id/googleIcon.setOnClickListener(this);
+        mBinding.signOutButton.setOnClickListener(this);
+        mBinding.disconnectButton.setOnClickListener(this);
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
+
+        mGoogleSignInClient=GoogleSignIn.getClient(this,gso);
 
         //Initalize firebase auth
         mAuth = FirebaseAuth.getInstance();
@@ -62,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
         createAcctTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,6 +189,69 @@ public class LoginActivity extends AppCompatActivity {
                         // [END_EXCLUDE]
                     }
                 });
+    }
+    // [START signin]
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+    // [END signin]
+
+    private void signOut() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
+    }
+
+    private void revokeAccess() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google revoke access
+        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        updateUI(null);
+                    }
+                });
+    }
+
+    private void updateUI(GoogleSignInAccount user) {
+        hideProgressBar();
+        if (user != null) {
+            mBinding.status.setText(getString(R.string.google_status_fmt, user.getEmail()));
+            mBinding.detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+
+            mBinding.signInButton.setVisibility(View.GONE);
+            mBinding.signOutAndDisconnect.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.status.setText(R.string.signed_out);
+            mBinding.detail.setText(null);
+
+            mBinding.signInButton.setVisibility(View.VISIBLE);
+            mBinding.signOutAndDisconnect.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.signInButton) {
+            signIn();
+        } else if (i == R.id.signOutButton) {
+            signOut();
+        } else if (i == R.id.disconnectButton) {
+            revokeAccess();
+        }
     }
 
 }
