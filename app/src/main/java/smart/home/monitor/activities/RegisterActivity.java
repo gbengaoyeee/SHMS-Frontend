@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
-
+// firebase login 
     private void writeNewUser(String name, String email){
         User newUser = new User(name, email);
         mDB.child("users").child(User.getSha256(email)).setValue(newUser);

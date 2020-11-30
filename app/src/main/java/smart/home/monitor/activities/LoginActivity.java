@@ -11,21 +11,30 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.common.api.ApiException;
+
+//import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,24 +42,20 @@ public class LoginActivity extends AppCompatActivity {
     String TAG="Google sign in";
     TextView createAcctTV;
     EditText emailET, passwordET;
-    ImageView googleIcon;
     Button signInBtn;
-    FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignInClient;
-    private ActivityGoogleBinding mBinding;
+    FirebaseAuth mAuth; //private
+
+   ProgressBar progressBar2;
+   // ImageView googleIcon;
+
+   LoginButton loginButton;
+   CallbackManager mCallbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        findViewById(R.id.sign_in_button).setOnClickListener((View.OnClickListener) this);
-        mBinding = ActivityGoogleBinding.inflate(getLayoutInflater());
-        setContentView(mBinding.getRoot());
-        setProgressBar(mBinding.progressBar);
 
-        // Button listeners
-        mBinding.@+id/googleIcon.setOnClickListener(this);
-        mBinding.signOutButton.setOnClickListener(this);
-        mBinding.disconnectButton.setOnClickListener(this);
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -58,7 +63,28 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
 
-        mGoogleSignInClient=GoogleSignIn.getClient(this,gso);
+
+        //Initialize Facebok SDK
+        FacebookSdk.sdkInitialize(LoginActivity.this);
+
+        // Initialize Facebook Login button
+        mCallbackManager = CallbackManager.Factory.create();
+         loginButton = findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+               }
+
+            @Override
+            public void onError(FacebookException error) {
+               }
+        });
 
         //Initalize firebase auth
         mAuth = FirebaseAuth.getInstance();
@@ -67,83 +93,18 @@ public class LoginActivity extends AppCompatActivity {
         passwordET = findViewById(R.id.loginPassword);
         signInBtn = findViewById(R.id.signInBtn);
         createAcctTV = (TextView) findViewById(R.id.createAcctTV);
-        googleIcon = findViewById(R.id.googleIcon);
+       // googleIcon = findViewById(R.id.googleIcon);
+
+
+        progressBar2 = findViewById(R.id.progressBar2);
 
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
-        createAcctTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                segueToRegisterActivity();
-            }
-        });
-
-        signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signInWithEmail(emailET.getText().toString(), passwordET.getText().toString());
-            }
-        });
-    }
-
-    private boolean validateForm() {
-        if (emailET.getText().toString().isEmpty() ||
-                emailET.getText() == null ||
-                passwordET.getText().toString().isEmpty() ||
-                passwordET.getText() == null
-        ) {
-            return false;
-        }
-        return true;
-    }
-
-    private void showAlertDialogOneOption(int msg, int option) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-        builder.setMessage(msg)
-                .setNegativeButton(option, null);
-
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-    private void signInWithEmail(String email, String password) {
-        if (!validateForm()) {
-            showAlertDialogOneOption(R.string.emptyCreds, R.string.okString);
-            return;
-        }
-        // showProgressbar() & hideProgressBar() TO-DO
-
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            startActivity(new Intent(LoginActivity.this, HomePage.class));
-                        } else {
-                            showAlertDialogOneOption(R.string.signInFailureMsg, R.string.okString);
-                        }
-                    }
-                });
-    }
-
-    /**
-     * Segues into Register activity
-     */
-    private void segueToRegisterActivity() {
-        Intent registerActivity = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(registerActivity);
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-
+/*
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -160,98 +121,117 @@ public class LoginActivity extends AppCompatActivity {
                 // [END_EXCLUDE]
             }
         }
+*/
 
     }
 
-    private void firebaseAuthWithGoogle(String idToken) {
-        // [START_EXCLUDE silent]
-        showProgressBar();
-        // [END_EXCLUDE]
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+    private void handleFacebookAccessToken(AccessToken token) {
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(mBinding.mainLayout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
-
-                        // [START_EXCLUDE]
-                        hideProgressBar();
-                        // [END_EXCLUDE]
-                    }
-                });
-    }
-    // [START signin]
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-    // [END signin]
-
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
-
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
                     }
                 });
     }
 
-    private void revokeAccess() {
-        // Firebase sign out
-        mAuth.signOut();
-
-        // Google revoke access
-        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
-                    }
-                });
-    }
-
-    private void updateUI(GoogleSignInAccount user) {
-        hideProgressBar();
-        if (user != null) {
-            mBinding.status.setText(getString(R.string.google_status_fmt, user.getEmail()));
-            mBinding.detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-
-            mBinding.signInButton.setVisibility(View.GONE);
-            mBinding.signOutAndDisconnect.setVisibility(View.VISIBLE);
-        } else {
-            mBinding.status.setText(R.string.signed_out);
-            mBinding.detail.setText(null);
-
-            mBinding.signInButton.setVisibility(View.VISIBLE);
-            mBinding.signOutAndDisconnect.setVisibility(View.GONE);
+    private void updateUI(FirebaseUser user) {
+        if(user != null){
+            Intent intent = new Intent(LoginActivity.this, HomePage.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "sign in to continue", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.signInButton) {
-            signIn();
-        } else if (i == R.id.signOutButton) {
-            signOut();
-        } else if (i == R.id.disconnectButton) {
-            revokeAccess();
+    protected void onStart() {
+        super.onStart();
+        createAcctTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                segueToRegisterActivity();
+            }
+        });
+
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signInWithEmail(emailET.getText().toString(), passwordET.getText().toString());
+
+               progressBar2.setVisibility(View.VISIBLE);
+
+            }
+        });
+    }
+
+    private boolean validateForm(){
+        if(emailET.getText().toString().isEmpty() ||
+                emailET.getText() == null ||
+                passwordET.getText().toString().isEmpty()||
+                passwordET.getText() == null
+        ){
+            return false;
         }
+        return true;
+    }
+
+    private void showAlertDialogOneOption(int msg, int option){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setMessage(msg)
+                .setNegativeButton(option, null);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+    private void signInWithEmail(String email, String password){
+        if (!validateForm()) {
+            showAlertDialogOneOption(R.string.emptyCreds, R.string.okString);
+          // progressBar2.setVisibility(View.INVISIBLE);
+
+            return;
+        }
+        // showProgressbar() & hideProgressBar() TO-DO
+
+
+
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            progressBar2.setVisibility(View.INVISIBLE);
+                            startActivity(new Intent(LoginActivity.this, HomePage.class));
+
+                        }
+                        else{
+                            progressBar2.setVisibility(View.INVISIBLE);
+                            showAlertDialogOneOption(R.string.signInFailureMsg, R.string.okString);
+
+                        }
+                    }
+                });
+    }
+
+    /**
+     * Segues into Register activity
+     */
+    private void segueToRegisterActivity(){
+        Intent registerActivity = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(registerActivity);
     }
 
 }
