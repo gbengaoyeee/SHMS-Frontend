@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerBtn;
     FirebaseAuth mAuth;
     private DatabaseReference mDB;
+    private  ProgressBar progressBar2;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,10 @@ public class RegisterActivity extends AppCompatActivity {
         passwordET = findViewById(R.id.registerPassword);
         registerBtn = findViewById(R.id.registerBtn);
 
+        final ProgressBar progressBar2;
+
+        progressBar2 = findViewById(R.id.progressBar2);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.registerToolbar);
         setSupportActionBar(toolbar);
 
@@ -51,6 +58,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createAccount(nameET.getText().toString(), emailET.getText().toString(), passwordET.getText().toString());
+                progressBar2.setVisibility(View.VISIBLE);
+
             }
         });
     }
@@ -94,11 +103,13 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            progressBar2.setVisibility(View.INVISIBLE);
                             writeNewUser(name, email);
                             Toast.makeText(RegisterActivity.this, "Sign up successful", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(RegisterActivity.this, HomePage.class));
                         }
                         else {
+                            progressBar2.setVisibility(View.INVISIBLE);
                             showAlertDialogOneOption(R.string.signUpFailureMsg, R.string.okString);
                         }
                     }
