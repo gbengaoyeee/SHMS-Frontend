@@ -213,6 +213,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            progressBar2.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(LoginActivity.this, HomePage.class));
 
                         }
