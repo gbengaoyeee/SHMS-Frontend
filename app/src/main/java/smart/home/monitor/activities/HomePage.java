@@ -11,6 +11,8 @@ import smart.home.monitor.R;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toolbar;
 
 import com.google.android.material.tabs.TabItem;
@@ -19,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 public class HomePage extends AppCompatActivity {
     private androidx.appcompat.widget.Toolbar homeToolBar;
@@ -26,6 +30,9 @@ public class HomePage extends AppCompatActivity {
     private TabItem devicesTab, addDeviceTab;
     private PagerAdapter pagerAdapter;
     private TabLayout homeTabLayout;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +43,9 @@ public class HomePage extends AppCompatActivity {
         devicesTab = findViewById(R.id.devicesTab);
         addDeviceTab = findViewById(R.id.addDevicesTab);
         homeTabLayout = findViewById(R.id.homeTabLayout);
+
+
+
 
         setSupportActionBar(homeToolBar);
 

@@ -29,4 +29,5 @@
     <string name="okString">D\'accord</string>
     <string name="signInFailureMsg">Impossible de se connecter. Veuillez vérifier vos informantions d\'identification</string>
     <string name="emptyCreds">Veuillez vous assurer que touts les champs sont remplis</string>
+    <string name="facebook_app_id">657298138273401</string>
 </resources>

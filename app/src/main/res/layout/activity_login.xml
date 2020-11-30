@@ -60,19 +60,7 @@
         app:layout_constraintVertical_bias="0.03"
         app:layout_editor_absoluteY="240sp" />
 
-    <ImageView
-        android:id="@+id/facebookIcon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="100dp"
-        android:contentDescription="@string/signInFacebookDesc"
-        android:scaleType="fitCenter"
-        android:src="@drawable/facebook_logo"
-        app:layout_constraintEnd_toStartOf="@+id/googleIcon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/googleIcon" />
+
 
     <ImageView
         android:id="@+id/googleIcon"
@@ -162,14 +150,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="@string/dontHaveAccountString"
         android:textColor="@color/primaryGreyTwo"
         android:textSize="16sp"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/createAcctTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/createAcctTV"
@@ -177,18 +166,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="52dp"
         android:gravity="center"
         android:text="@string/createAccountString"
         android:textColor="@color/primaryGreen"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleIcon"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintTop_toBottomOf="@+id/googleIcon" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/loginToolbar"
@@ -202,5 +189,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/app_name"
         app:titleTextAppearance="@style/Toolbar_TextAppearance" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="56dp"
+        android:layout_height="52dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAcctTV" />
+
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="50dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/googleIcon"
+        app:layout_constraintEnd_toStartOf="@+id/googleIcon"
+        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/googleIcon"
+        app:layout_constraintVertical_bias="0.419" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

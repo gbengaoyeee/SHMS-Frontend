@@ -30,4 +30,7 @@
     <string name="okString">OK</string>
     <string name="signInFailureMsg">Could not sign in. Please check your credentials</string>
     <string name="emptyCreds">Please make sure all fields are filled</string>
+  <string name="facebook_app_id">657298138273401</string>
+   <string name="fb_login_protocol_scheme">fb657298138273401</string>
+
 </resources>
