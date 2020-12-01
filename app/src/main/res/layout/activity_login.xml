@@ -62,23 +62,6 @@
 
 
 
-    <ImageView
-        android:id="@+id/googleIcon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="100dp"
-        android:layout_marginTop="25dp"
-        android:contentDescription="@string/signInGoogleDesc"
-        android:scaleType="fitCenter"
-        android:src="@drawable/google_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/facebookIcon"
-        app:layout_constraintTop_toBottomOf="@+id/loginPageOr"
-        app:layout_constraintVertical_bias="0.0" />
-
     <TextView
         android:id="@+id/loginPageTitle"
         style="@style/HeaderStyle"
@@ -196,9 +179,10 @@
         android:layout_width="56dp"
         android:layout_height="52dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAcctTV" />
+        app:layout_constraintTop_toTopOf="@+id/loginPageOr" />
 
 
     <com.facebook.login.widget.LoginButton
@@ -206,12 +190,24 @@
         android:layout_width="50dp"
         android:layout_height="49dp"
         android:layout_gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/googleIcon"
-        app:layout_constraintEnd_toStartOf="@+id/googleIcon"
-        app:layout_constraintHorizontal_bias="0.575"
+        android:layout_marginStart="68dp"
+        app:layout_constraintBottom_toBottomOf="@+id/google_signIn"
+        app:layout_constraintEnd_toStartOf="@+id/loginPageOr"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/googleIcon"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintTop_toTopOf="@+id/google_signIn"
+        app:layout_constraintVertical_bias="0.0" />
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_signIn"
+        android:layout_width="121dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginBottom="244dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toEndOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/loginPageOr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

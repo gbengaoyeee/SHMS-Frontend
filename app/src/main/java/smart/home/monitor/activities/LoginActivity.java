@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import smart.home.monitor.R;
+import smart.home.monitor.models.User;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +22,12 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -32,7 +37,6 @@ import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.common.api.ApiException;
 
-//import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -43,10 +47,16 @@ public class LoginActivity extends AppCompatActivity {
     TextView createAcctTV;
     EditText emailET, passwordET;
     Button signInBtn;
+
+    GoogleSignInOptions gso;
+    SignInButton google_signIn;
     FirebaseAuth mAuth; //private
+    GoogleSignInClient googleSignInClient;
+
 
    ProgressBar progressBar2;
    // ImageView googleIcon;
+
 
    LoginButton loginButton;
    CallbackManager mCallbackManager;
@@ -61,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+        googleSignInClient = GoogleSignIn.getClient(this,gso);
+
 
 
 
@@ -89,25 +101,44 @@ public class LoginActivity extends AppCompatActivity {
         //Initalize firebase auth
         mAuth = FirebaseAuth.getInstance();
 
+
+
+
         emailET = findViewById(R.id.loginEmail);
         passwordET = findViewById(R.id.loginPassword);
         signInBtn = findViewById(R.id.signInBtn);
         createAcctTV = (TextView) findViewById(R.id.createAcctTV);
-       // googleIcon = findViewById(R.id.googleIcon);
+        google_signIn = findViewById(R.id.google_signIn);
+
+
+
+        google_signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar2.setVisibility(View.VISIBLE);
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+
 
 
         progressBar2 = findViewById(R.id.progressBar2);
 
     }
 
+
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-/*
+
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -121,8 +152,33 @@ public class LoginActivity extends AppCompatActivity {
                 // [END_EXCLUDE]
             }
         }
-*/
 
+
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            progressBar2.setVisibility(View.INVISIBLE);
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                            startActivity(intent);
+                            //FirebaseUser user = mAuth.getCurrentUser();
+                            //updateUI(user);
+                        } else {
+                            progressBar2.setVisibility(View.INVISIBLE);
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+
+                        }
+
+                    }
+                });
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
@@ -132,10 +188,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            progressBar2.setVisibility(View.INVISIBLE);
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
+                            progressBar2.setVisibility(View.INVISIBLE);
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -165,6 +223,8 @@ public class LoginActivity extends AppCompatActivity {
                 segueToRegisterActivity();
             }
         });
+
+
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,7 +259,6 @@ public class LoginActivity extends AppCompatActivity {
     private void signInWithEmail(String email, String password){
         if (!validateForm()) {
             showAlertDialogOneOption(R.string.emptyCreds, R.string.okString);
-          // progressBar2.setVisibility(View.INVISIBLE);
 
             return;
         }
