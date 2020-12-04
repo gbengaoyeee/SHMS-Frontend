@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
             showAlertDialogOneOption(R.string.emptyCreds, R.string.okString);
             return;
         }
-        // showProgressbar() & hideProgressBar() TO-DO
+        // showProgressbar() &  TO-DO
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -101,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                         else {
                             showAlertDialogOneOption(R.string.signUpFailureMsg, R.string.okString);
                         }
+                        // hideProgressBar()
                     }
                 });
     }
