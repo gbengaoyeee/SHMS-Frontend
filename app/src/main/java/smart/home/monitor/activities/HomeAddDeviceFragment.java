@@ -69,11 +69,14 @@ public class HomeAddDeviceFragment extends Fragment {
 
     private void updateUI(boolean success){
         if(success){
-            Toast.makeText(getContext(), "Wrote something to database", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.newDeviceAddedString, Toast.LENGTH_LONG).show();
+            deviceNameET.setText("");
+            deviceCodeET.setText("");
         }
         else {
-            Toast.makeText(getContext(), "Could not Write to database", Toast.LENGTH_LONG).show();
+            showAlertDialogOneOption(R.string.addingNewDeviceErrorMsg, R.string.okString);
         }
+
     }
 
     private void showAlertDialogOneOption(int msg, int option){

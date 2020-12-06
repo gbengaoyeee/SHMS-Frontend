@@ -32,4 +32,6 @@
     <string name="emptyCreds">Please make sure all fields are filled</string>
     <string name="facebook_app_id" translatable="false">657298138273401</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb657298138273401</string>
+    <string name="newDeviceAddedString">Added new device</string>
+    <string name="addingNewDeviceErrorMsg">Could not add device. Please check the device registration code</string>
 </resources>

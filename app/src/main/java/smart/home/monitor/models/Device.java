@@ -28,7 +28,7 @@ public class Device {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists() && (Boolean) snapshot.getValue()){ // Write to database
-                    System.out.println("EXISTS "+ User.getSha256(mAuth.getCurrentUser().getEmail()));
+                    mDB.child("devices/"+device_code).setValue(false);
                     mDB.child("users").child(User.getSha256(mAuth.getCurrentUser().getEmail())).child("devices").child(device_code).setValue(Device.this);
                     handler.onSuccess(true);
                 } else {

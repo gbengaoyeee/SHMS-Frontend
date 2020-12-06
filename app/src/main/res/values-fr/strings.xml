@@ -29,4 +29,6 @@
     <string name="okString">D\'accord</string>
     <string name="signInFailureMsg">Impossible de se connecter. Veuillez vérifier vos informantions d\'identification</string>
     <string name="emptyCreds">Veuillez vous assurer que touts les champs sont remplis</string>
+    <string name="newDeviceAddedString">a ajouté un nouvel appareil</string>
+    <string name="addingNewDeviceErrorMsg">Impossible d\'ajouter l\'appareil. Veuillez vérifier le code d\'enregistrement de l\'appareil</string>
 </resources>
