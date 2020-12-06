@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 public class Device {
     public String device_code;
     public String device_name;
-    private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public Device(){
     }
