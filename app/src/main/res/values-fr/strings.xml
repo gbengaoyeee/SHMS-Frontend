@@ -19,7 +19,7 @@
     <string name="addDeviceSubHeaderString">Ajouter un nouvel appareil en saisissant l\'identifiant et le nom de l\'appareil</string>
     <string name="addDeviceHeaderString">" Ajouter un périphérique"</string>
     <string name="registrationCodeHint">Code d\'enregistrement de l\'appareil</string>
-    <string name="deviceNameHint">Chambre de John</string>
+    <string name="deviceNameHint">Nom de l\'appareil exemple "Chambre de John"</string>
     <string name="addDeviceBtnString">Ajouter Un Appareil</string>
     <string name="logoutMsg">Se déconnecter?</string>
     <string name="yesString">Oui</string>
@@ -29,5 +29,4 @@
     <string name="okString">D\'accord</string>
     <string name="signInFailureMsg">Impossible de se connecter. Veuillez vérifier vos informantions d\'identification</string>
     <string name="emptyCreds">Veuillez vous assurer que touts les champs sont remplis</string>
-    <string name="facebook_app_id">657298138273401</string>
 </resources>

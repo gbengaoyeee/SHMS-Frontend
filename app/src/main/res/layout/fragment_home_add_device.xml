@@ -8,34 +8,20 @@
     tools:context=".activities.HomeAddDeviceFragment">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addDeviceBtn"
         style="@style/ButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="@string/addDeviceBtnString"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintEnd_toEndOf="@+id/deviceNameET"
+        app:layout_constraintStart_toStartOf="@+id/deviceNameET"
+        app:layout_constraintTop_toBottomOf="@+id/deviceNameET"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editText2"
-        style="@style/EditTextStyle"
-        android:paddingHorizontal="15dp"
-        android:layout_width="0dp"
-        android:layout_height="50sp"
-        android:layout_marginTop="20dp"
-        android:hint="@string/deviceNameHint"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/editText"
+        android:id="@+id/deviceCodeET"
         style="@style/EditTextStyle"
         android:paddingHorizontal="15dp"
         android:layout_width="0dp"
@@ -48,6 +34,22 @@
         app:layout_constraintStart_toStartOf="@+id/addDeviceSubheader"
         app:layout_constraintTop_toBottomOf="@+id/addDeviceSubheader"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/deviceNameET"
+        style="@style/EditTextStyle"
+        android:paddingHorizontal="15dp"
+        android:layout_width="0dp"
+        android:layout_height="50sp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/deviceNameHint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/deviceCodeET"
+        app:layout_constraintStart_toStartOf="@+id/deviceCodeET"
+        app:layout_constraintTop_toBottomOf="@+id/deviceCodeET"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 
     <TextView
         android:id="@+id/addDeviceSubheader"

@@ -27,13 +27,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.common.api.ApiException;
 
@@ -46,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     String TAG="Google sign in";
     TextView createAcctTV;
     EditText emailET, passwordET;
-    Button signInBtn;
+    Button signInBtn, facebookCustomSignInBtn, googleCustomSignInBtn;
 
     GoogleSignInOptions gso;
     SignInButton google_signIn;
@@ -56,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
 
    ProgressBar progressBar2;
    // ImageView googleIcon;
-
 
    LoginButton loginButton;
    CallbackManager mCallbackManager;
@@ -71,10 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-        googleSignInClient = GoogleSignIn.getClient(this,gso);
-
-
-
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
 
         //Initialize Facebok SDK
         FacebookSdk.sdkInitialize(LoginActivity.this);
@@ -91,18 +85,28 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-               }
+            }
 
             @Override
             public void onError(FacebookException error) {
-               }
+            }
         });
+
+        // initializing buttons to replace original facebook and google btns
+        facebookCustomSignInBtn = findViewById(R.id.facebookCustomSignInBtn);
+        googleCustomSignInBtn = findViewById(R.id.googleCustomSignInBtn);
+        facebookCustomSignInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(view == facebookCustomSignInBtn){
+                    loginButton.performClick();
+                }
+            }
+        });
+
 
         //Initalize firebase auth
         mAuth = FirebaseAuth.getInstance();
-
-
-
 
         emailET = findViewById(R.id.loginEmail);
         passwordET = findViewById(R.id.loginPassword);
@@ -110,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         createAcctTV = (TextView) findViewById(R.id.createAcctTV);
         google_signIn = findViewById(R.id.google_signIn);
 
-
+        progressBar2 = findViewById(R.id.progressBar2);
 
         google_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,14 +125,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
-        progressBar2 = findViewById(R.id.progressBar2);
+        googleCustomSignInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                google_signIn.performClick();
+            }
+        });
 
     }
-
-
-
 
 
     @Override
@@ -147,13 +151,11 @@ public class LoginActivity extends AppCompatActivity {
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                // [START_EXCLUDE]
-                updateUI(null);
-                // [END_EXCLUDE]
             }
         }
-
-
+        else{
+            mCallbackManager.onActivityResult(requestCode,resultCode, data);
+        }
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
@@ -163,20 +165,19 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            progressBar2.setVisibility(View.INVISIBLE);
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            User newUser = new User(user.getDisplayName(), user.getEmail());
+                            newUser.writeNewUserToDB(); // write to DB
+                            progressBar2.setVisibility(View.GONE);
                             Intent intent = new Intent(LoginActivity.this, HomePage.class);
                             startActivity(intent);
-                            //FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
                         } else {
-                            progressBar2.setVisibility(View.INVISIBLE);
+                            progressBar2.setVisibility(View.GONE);
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-
                         }
-
                     }
                 });
     }
@@ -188,31 +189,24 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            progressBar2.setVisibility(View.INVISIBLE);
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            User newUser = new User(user.getDisplayName(), user.getEmail());
+                            newUser.writeNewUserToDB();// write to DB
+
+                            progressBar2.setVisibility(View.GONE); // remove progress bar
+                            Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                            startActivity(intent);
+
                         } else {
-                            progressBar2.setVisibility(View.INVISIBLE);
+                            progressBar2.setVisibility(View.GONE);
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
                         }
                     }
                 });
     }
-
-    private void updateUI(FirebaseUser user) {
-        if(user != null){
-            Intent intent = new Intent(LoginActivity.this, HomePage.class);
-            startActivity(intent);
-        }else{
-            Toast.makeText(this, "sign in to continue", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
 
     @Override
     protected void onStart() {
@@ -223,9 +217,6 @@ public class LoginActivity extends AppCompatActivity {
                 segueToRegisterActivity();
             }
         });
-
-
-
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -263,9 +254,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         // showProgressbar() & hideProgressBar() TO-DO
-
-
-
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

@@ -1,6 +1,5 @@
 package smart.home.monitor.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -58,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createAccount(nameET.getText().toString(), emailET.getText().toString(), passwordET.getText().toString());
-                progressBar2.setVisibility(View.VISIBLE);
+//                progressBar2.setVisibility(View.VISIBLE);
 
             }
         });
@@ -85,11 +84,12 @@ public class RegisterActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
-// firebase login 
-    private void writeNewUser(String name, String email){
-        User newUser = new User(name, email);
-        mDB.child("users").child(User.getSha256(email)).setValue(newUser);
-    }
+
+    // Write data to database
+//    private void writeNewUser(String name, String email){
+//        User newUser = new User(name, email);
+//        mDB.child("users").child(User.getSha256(email)).setValue(newUser);
+//    }
 
     private void createAccount(final String name, final String email, String password){
         if (!validateForm()) {
@@ -103,13 +103,15 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            progressBar2.setVisibility(View.INVISIBLE);
-                            writeNewUser(name, email);
+//                            progressBar2.setVisibility(View.INVISIBLE);
+//                            writeNewUser(name, email);
+                           User newUser = new User(name, email);
+                           newUser.writeNewUserToDB();
                             Toast.makeText(RegisterActivity.this, "Sign up successful", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(RegisterActivity.this, HomePage.class));
                         }
                         else {
-                            progressBar2.setVisibility(View.INVISIBLE);
+//                            progressBar2.setVisibility(View.INVISIBLE);
                             showAlertDialogOneOption(R.string.signUpFailureMsg, R.string.okString);
                         }
                         // hideProgressBar()

@@ -61,4 +61,14 @@
         <item name="android:textColorHint">@color/primaryGreyTwo</item>
         <item name="android:textColor">@color/primaryBlack</item>
     </style>
+
+    <style name="GoogleSignInBtn">
+        <item name="android:background">@drawable/google_logo</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="FacebookSignInBtn">
+        <item name="android:background">@drawable/facebook_logo</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
 </resources>

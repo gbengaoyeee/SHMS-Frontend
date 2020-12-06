@@ -20,7 +20,7 @@
     <string name="addDeviceSubHeaderString">Add a new device by entering the device id and name of device</string>
     <string name="addDeviceHeaderString">Add a device</string>
     <string name="registrationCodeHint">Device registration code</string>
-    <string name="deviceNameHint">"John's Room"</string>
+    <string name="deviceNameHint">Device Name eg. "John's Room"</string>
     <string name="addDeviceBtnString">Add Device</string>
     <string name="logoutMsg">Logout?</string>
     <string name="yesString">Yes</string>
@@ -30,7 +30,6 @@
     <string name="okString">OK</string>
     <string name="signInFailureMsg">Could not sign in. Please check your credentials</string>
     <string name="emptyCreds">Please make sure all fields are filled</string>
-  <string name="facebook_app_id">657298138273401</string>
-   <string name="fb_login_protocol_scheme">fb657298138273401</string>
-
+    <string name="facebook_app_id" translatable="false">657298138273401</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb657298138273401</string>
 </resources>

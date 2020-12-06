@@ -1,10 +1,15 @@
 package smart.home.monitor.models;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.security.MessageDigest;
 
 public class User {
     public String name;
     public String email;
+    private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
+    public String userHash;
 
     public User(){
     }
@@ -14,6 +19,9 @@ public class User {
         this.email = email;
     }
 
+    public void writeNewUserToDB(){
+        mDB.child("users").child(User.getSha256(email)).setValue(this);
+    }
     public static String getSha256(String value) {
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");
