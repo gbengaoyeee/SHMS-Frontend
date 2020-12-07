@@ -13,6 +13,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,18 +79,43 @@ public class Device implements Parcelable {
         });
     }
 
-    public void observeDevice(){
+    public void observeDevice(final DatabaseObserveHandler handler){
         FirebaseUser currUser = mAuth.getCurrentUser();
         this.deviceReference = mDB.child("users/" + User.getSha256(currUser.getEmail())).child("devices/" + this.device_code);
+        final Map<String, String> deviceReadings = new HashMap<>();
         this.deviceListener = deviceReference.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                        if(snapshot.getKey().equals("gas")){
+                            String gasLevel = ""+(Long) snapshot.getValue();
+                            deviceReadings.put("gas", gasLevel);
+                        }
+                        if(snapshot.getKey().equals("humidity")){
+                            String humidityLevel = ""+(Long) snapshot.getValue();
+                            deviceReadings.put("humidity", humidityLevel);
+                        }
+                        if(snapshot.getKey().equals("temperature")){
+                            String temperatureLevel = ""+(Long) snapshot.getValue();
+                            deviceReadings.put("temperature", temperatureLevel);
+                        }
+                        handler.onChange(deviceReadings);
                     }
 
                     @Override
                     public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                        System.out.println(snapshot.getKey());
+                        if(snapshot.getKey().equals("gas")){
+                            String gasLevel = ""+(Long) snapshot.getValue();
+                            deviceReadings.put("gas", gasLevel);
+                        }
+                        if(snapshot.getKey().equals("humidity")){
+                            String humidityLevel = ""+(Long) snapshot.getValue();
+                            deviceReadings.put("humidity", humidityLevel);
+                        }
+                        if(snapshot.getKey().equals("temperature")){
+                            String temperatureLevel = ""+(Long) snapshot.getValue();
+                            deviceReadings.put("temperature", temperatureLevel);
+                        }
+                        handler.onChange(deviceReadings);
                     }
 
                     @Override
@@ -110,7 +137,6 @@ public class Device implements Parcelable {
 
     public void stopObserving(){
         this.deviceReference.removeEventListener(this.deviceListener);
-        System.out.println("STOPPED LISTENING");
     }
 
     @Override

@@ -7,6 +7,3 @@ public interface DatabaseWriteHandler<T> {
     void onFailure(Exception e);
 }
 
-interface DatabaseObserveHandler {
-    void onChange(Map<String, String> data);
-}
