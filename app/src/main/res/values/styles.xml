@@ -19,6 +19,7 @@
 
     <style name="LoginPage" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/primaryGreen</item>
+        
     </style>
 
     <style name="RegisterPage" parent="Theme.AppCompat.Light">
