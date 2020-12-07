@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -54,8 +55,6 @@ public class HomeDevicesFragment extends Fragment {
         mDB = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         devicesListView = fragView.findViewById(R.id.devicesListView);
-//        dataSource = new ArrayList<>();
-//        dataSource.add("Kitchen Device");
 
         dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, dataSource);
         devicesListView.setAdapter(dataAdapter);
@@ -109,6 +108,7 @@ public class HomeDevicesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent readingsActivity = new Intent(getContext(), ReadingsActivity.class);
+                readingsActivity.putExtra("device", devicesList.get(i));
                 startActivity(readingsActivity);
             }
         });
