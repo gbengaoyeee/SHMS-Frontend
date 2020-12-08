@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryWhite"
+    tools:context=".activities.ReadingsActivity">
+
+    <ImageView
+        android:id="@+id/temperatureLogo"
+        android:layout_width="303dp"
+        android:layout_height="351dp"
+        android:layout_marginStart="52dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/temperature"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.149" />
+
+    <TextView
+        android:id="@+id/temperatureReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="320dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="35C - Normal"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/temperatureLogo"
+        app:layout_constraintStart_toStartOf="@+id/temperatureLogo"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureLogo" />
+
+    <ImageView
+        android:id="@+id/humidityLogo"
+        android:layout_width="312dp"
+        android:layout_height="333dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/humidity"
+        app:layout_constraintBottom_toBottomOf="@+id/temperatureLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintStart_toEndOf="@+id/temperatureLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.971" />
+
+    <TextView
+        android:id="@+id/humidityReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="291dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="55 - Normal"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/humidityLogo"
+        app:layout_constraintStart_toStartOf="@+id/humidityLogo"
+        app:layout_constraintTop_toBottomOf="@+id/humidityLogo" />
+
+    <ImageView
+        android:id="@+id/gasLogo"
+        android:layout_width="224dp"
+        android:layout_height="298dp"
+        android:layout_marginTop="372dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureReading" />
+
+    <TextView
+        android:id="@+id/gasReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="100 - Normal"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/gasLogo"
+        app:layout_constraintStart_toStartOf="@+id/gasLogo"
+        app:layout_constraintTop_toBottomOf="@+id/gasLogo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

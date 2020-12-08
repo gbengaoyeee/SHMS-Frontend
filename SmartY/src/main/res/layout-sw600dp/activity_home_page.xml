@@ -21,22 +21,22 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/homeTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabTextColor="@color/primaryGreyOne"
+            android:layout_height="109dp"
             android:background="@color/primaryWhite"
-            app:tabSelectedTextColor="@color/primaryGreen">
+            app:tabSelectedTextColor="@color/primaryGreen"
+            app:tabTextColor="@color/primaryGreyOne">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/devicesTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tabItem1String"
-                />
+                android:text="@string/tabItem1String" />
+
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/addDevicesTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tabItem2String"/>
+                android:text="@string/tabItem2String" />
         </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
