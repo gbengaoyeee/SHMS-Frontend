@@ -44,7 +44,7 @@ public class HomeDevicesFragment extends Fragment {
 
     private ListView devicesListView;
     private ArrayList<String> dataSource = new ArrayList<>();
-    private ArrayList<Device> devicesList = new ArrayList<>();
+    public static ArrayList<Device> devicesList = new ArrayList<>();
     private ArrayAdapter<String> dataAdapter;
     private DatabaseReference mDB;
     private FirebaseAuth mAuth;

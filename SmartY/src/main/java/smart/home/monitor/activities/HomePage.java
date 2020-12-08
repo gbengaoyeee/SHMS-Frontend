@@ -8,9 +8,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import smart.home.monitor.R;
+import smart.home.monitor.models.Device;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toolbar;
@@ -32,20 +37,22 @@ public class HomePage extends AppCompatActivity {
     private TabLayout homeTabLayout;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){
+            Intent loginActivity = new Intent(HomePage.this, LoginActivity.class);
+            startActivity(loginActivity);
+            return;
+        }
 
         homeToolBar = findViewById(R.id.homeToolBar);
         homeViewPager = findViewById(R.id.homeViewPager);
         devicesTab = findViewById(R.id.devicesTab);
         addDeviceTab = findViewById(R.id.addDevicesTab);
         homeTabLayout = findViewById(R.id.homeTabLayout);
-
-
-
 
         setSupportActionBar(homeToolBar);
 
@@ -80,6 +87,31 @@ public class HomePage extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logoutMenu:
+                handleLogoutClicked();
+                break;
+        }
+        return true;
+    }
+
+    private void handleLogoutClicked(){
+        for(Device d : HomeDevicesFragment.devicesList){
+            d.stopObserving();
+        }
+        FirebaseAuth.getInstance().signOut();
+        finish();
+    }
+
+    @Override
     public void onBackPressed() {
         //super.onBackPressed();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -88,8 +120,7 @@ public class HomePage extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // TO-DO
-                        FirebaseAuth.getInstance().signOut();
-                        finish();
+                        handleLogoutClicked();
                     }
                 })
                 .setNegativeButton(R.string.noString, null);
