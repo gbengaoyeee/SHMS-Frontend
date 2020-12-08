@@ -25,6 +25,7 @@ public class Device implements Parcelable {
     public long temperature=0, gas=0, humidity=0;
     private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference deviceReference;
+    private DatabaseReference allDevicesRef;
     private ChildEventListener deviceListener;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -60,12 +61,15 @@ public class Device implements Parcelable {
     };
 
     public void writeNewDeviceToDB(final DatabaseWriteHandler<Boolean> handler){
-        mDB.child("devices/"+ device_code).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseUser currUser = mAuth.getCurrentUser();
+        this.allDevicesRef = mDB.child("devices/"+ device_code);
+        this.deviceReference = mDB.child("users/" + User.getSha256(currUser.getEmail())).child("devices/" + this.device_code);
+        allDevicesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists() && (Boolean) snapshot.getValue()){ // Write to database
-                    mDB.child("devices/"+device_code).setValue(false);
-                    mDB.child("users").child(User.getSha256(mAuth.getCurrentUser().getEmail())).child("devices").child(device_code).setValue(Device.this);
+                    allDevicesRef.setValue(false);
+                    deviceReference.setValue(Device.this);
                     handler.onSuccess(true);
                 } else {
                     handler.onSuccess(false);
@@ -79,10 +83,16 @@ public class Device implements Parcelable {
         });
     }
 
+    public void removeDeviceFromDB(){
+        this.deviceReference.removeValue();
+        this.allDevicesRef = mDB.child("devices/"+ device_code);
+        allDevicesRef.setValue(true);
+    }
+
     public void observeDevice(final DatabaseObserveHandler handler){
+        final Map<String, String> deviceReadings = new HashMap<>();
         FirebaseUser currUser = mAuth.getCurrentUser();
         this.deviceReference = mDB.child("users/" + User.getSha256(currUser.getEmail())).child("devices/" + this.device_code);
-        final Map<String, String> deviceReadings = new HashMap<>();
         this.deviceListener = deviceReference.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {

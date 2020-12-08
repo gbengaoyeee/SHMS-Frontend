@@ -33,4 +33,7 @@
     <string name="addingNewDeviceErrorMsg">Impossible d\'ajouter l\'appareil. Veuillez vérifier le code d\'enregistrement de l\'appareil</string>
     <string name="deviceDangerLevelString">Danger</string>
     <string name="deviceNormalLevelString">Ordinaire</string>
+    <string name="removeDeviceConfirmationMsg">Voulez-vous supprimer cet appareil?</string>
+    <string name="removedDeviceMsg">a été supprimé</string>
+    <string name="snackBarDismissString">rejeter</string>
 </resources>

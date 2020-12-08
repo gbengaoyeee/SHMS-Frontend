@@ -3,6 +3,7 @@ package smart.home.monitor.activities;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import smart.home.monitor.R;
@@ -26,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -70,15 +73,13 @@ public class HomeDevicesFragment extends Fragment {
         //Setting event handler for each item on list
         handleListViewClicks();
 
+        // Observe devices
+        observeAndUpdateListView();
+
         // Inflate the layout for this fragment
         return fragView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        observeAndUpdateListView();
-    }
 
     public void observeAndUpdateListView(){
         DatabaseReference devicesRef = mDB.child("users/"+ User.getSha256(mAuth.getCurrentUser().getEmail())).child("devices");
@@ -126,7 +127,7 @@ public class HomeDevicesFragment extends Fragment {
                     Uri notifSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
                             .setSound(notifSound)
-                            .setSmallIcon(R.drawable.com_facebook_button_send_icon_white)
+                            .setSmallIcon(R.drawable.app_logo)
                             .setContentTitle("SHMS")
                             .setContentText(message).setAutoCancel(true);
                     NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(
@@ -148,6 +149,36 @@ public class HomeDevicesFragment extends Fragment {
                 Intent readingsActivity = new Intent(getContext(), ReadingsActivity.class);
                 readingsActivity.putExtra("device", devicesList.get(i));
                 startActivity(readingsActivity);
+            }
+        });
+
+        devicesListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, final View view, final int position, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage(R.string.removeDeviceConfirmationMsg)
+                        .setPositiveButton(R.string.yesString, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Device removedDevice = devicesList.remove(position);
+                                removedDevice.removeDeviceFromDB();
+                                dataSource.remove(position);
+                                dataAdapter.notifyDataSetChanged();
+                                final Snackbar snackbar = Snackbar.make(view, removedDevice.device_name+" "+ getResources().getString(R.string.removedDeviceMsg), Snackbar.LENGTH_LONG);
+                                snackbar.setAction(R.string.snackBarDismissString, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        snackbar.dismiss();
+                                    }
+                                });
+                                snackbar.show();
+                            }
+                        })
+                        .setNegativeButton(R.string.noString, null);
+
+                AlertDialog alert = builder.create();
+                alert.show();
+                return true;
             }
         });
     }
