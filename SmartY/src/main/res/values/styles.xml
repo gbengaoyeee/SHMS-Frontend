@@ -1,0 +1,75 @@
+<resources>
+    <!-- Base application theme. -->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!-- Customize your theme here. -->
+<!--        <item name="colorPrimary">@color/primaryGreen</item>-->
+<!--        <item name="colorPrimaryDark">@color/primaryGreyOne</item>-->
+<!--        <item name="colorAccent">@color/primaryGreyThree</item>-->
+<!--    </style>-->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="Homepage" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryGreen</item>
+        <item name="colorPrimaryDark">@color/primaryGreyOne</item>
+        <item name="colorAccent">@color/primaryGreyThree</item>
+    </style>
+
+    <style name="LoginPage" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primaryGreen</item>
+        
+    </style>
+
+    <style name="RegisterPage" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primaryGreen</item>
+    </style>
+
+    <style name="Toolbar_TextAppearance">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/primaryWhite</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splashscreen</item>
+    </style>
+
+    <style name="HeaderStyle">
+        <item name="android:textColor">@color/primaryBlack</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SubHeaderStyle">
+        <item name="android:textColor">@color/primaryGreyTwo</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:textColor">@color/primaryLogoColor</item>
+        <item name="android:background">@color/primaryGreen</item>
+    </style>
+
+    <style name="ReadingsSubtitleStyle">
+        <item name="android:textColor">@color/primaryGreyThree</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:background">@color/editTextColor</item>
+        <item name="android:textColorHint">@color/primaryGreyTwo</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+    </style>
+
+    <style name="GoogleSignInBtn">
+        <item name="android:background">@drawable/google_logo</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="FacebookSignInBtn">
+        <item name="android:background">@drawable/facebook_logo</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+</resources>
