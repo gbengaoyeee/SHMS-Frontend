@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
 public class Device implements Parcelable {
     public String device_code;
     public String device_name;
-    public int temperature, gas, humidity;
+    public long temperature=0, gas=0, humidity=0;
     private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference deviceReference;
     private ChildEventListener deviceListener;
@@ -87,35 +87,41 @@ public class Device implements Parcelable {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                         if(snapshot.getKey().equals("gas")){
-                            String gasLevel = ""+(Long) snapshot.getValue();
-                            deviceReadings.put("gas", gasLevel);
+                            gas = (Long) snapshot.getValue();
                         }
                         if(snapshot.getKey().equals("humidity")){
-                            String humidityLevel = ""+(Long) snapshot.getValue();
-                            deviceReadings.put("humidity", humidityLevel);
+                            humidity = (Long) snapshot.getValue();
                         }
                         if(snapshot.getKey().equals("temperature")){
-                            String temperatureLevel = ""+(Long) snapshot.getValue();
-                            deviceReadings.put("temperature", temperatureLevel);
+                            temperature = (Long) snapshot.getValue();
                         }
-                        handler.onChange(deviceReadings);
+
+                        handler.onChange(Device.this, false);
                     }
 
                     @Override
                     public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                         if(snapshot.getKey().equals("gas")){
-                            String gasLevel = ""+(Long) snapshot.getValue();
-                            deviceReadings.put("gas", gasLevel);
+                            gas = (Long) snapshot.getValue();
                         }
                         if(snapshot.getKey().equals("humidity")){
-                            String humidityLevel = ""+(Long) snapshot.getValue();
-                            deviceReadings.put("humidity", humidityLevel);
+                            humidity = (Long) snapshot.getValue();
                         }
                         if(snapshot.getKey().equals("temperature")){
-                            String temperatureLevel = ""+(Long) snapshot.getValue();
-                            deviceReadings.put("temperature", temperatureLevel);
+                            temperature = (Long) snapshot.getValue();
                         }
-                        handler.onChange(deviceReadings);
+
+                        boolean gasBool = gas > 100;
+                        boolean humidityBool = (humidity < 20 || humidity > 100);
+                        boolean temperatureBool = (temperature < 15 || temperature > 50);
+                        System.out.println("Gas:"+gasBool);
+                        System.out.println("Humid:"+humidityBool);
+                        System.out.println("Temp"+temperatureBool);
+                        if(gasBool || humidityBool || temperatureBool){
+                            handler.onChange(Device.this, true);
+                        } else {
+                            handler.onChange(Device.this, false);
+                        }
                     }
 
                     @Override
@@ -148,9 +154,9 @@ public class Device implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(device_code);
         parcel.writeString(device_name);
-        parcel.writeInt(temperature);
-        parcel.writeInt(gas);
-        parcel.writeInt(humidity);
+        parcel.writeLong(temperature);
+        parcel.writeLong(gas);
+        parcel.writeLong(humidity);
     }
 }
 

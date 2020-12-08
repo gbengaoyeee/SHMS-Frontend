@@ -1,12 +1,20 @@
 package smart.home.monitor.activities;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import smart.home.monitor.R;
+import smart.home.monitor.models.DatabaseObserveHandler;
 import smart.home.monitor.models.Device;
 import smart.home.monitor.models.User;
 
@@ -59,13 +67,17 @@ public class HomeDevicesFragment extends Fragment {
         dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, dataSource);
         devicesListView.setAdapter(dataAdapter);
 
-        observeAndUpdateListView();
-
         //Setting event handler for each item on list
         handleListViewClicks();
 
         // Inflate the layout for this fragment
         return fragView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        observeAndUpdateListView();
     }
 
     public void observeAndUpdateListView(){
@@ -77,6 +89,7 @@ public class HomeDevicesFragment extends Fragment {
                 String deviceName = snapshot.child("device_name").getValue(String.class);
                 Device d = new Device(deviceCode, deviceName);
                 devicesList.add(d);
+                setupForNotification(d);
                 dataSource.add(deviceName);
                 dataAdapter.notifyDataSetChanged();
             }
@@ -99,6 +112,31 @@ public class HomeDevicesFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    private void setupForNotification(Device d){
+        d.observeDevice(new DatabaseObserveHandler() {
+            @Override
+            public void onChange(Device device, boolean danger) {
+                if(danger){
+                    String message = "There is a problem in "+device.device_name;
+
+                    Uri notifSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext())
+                            .setSound(notifSound)
+                            .setSmallIcon(R.drawable.com_facebook_button_send_icon_white)
+                            .setContentTitle("SHMS")
+                            .setContentText(message).setAutoCancel(true);
+                    NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(
+                            Context.NOTIFICATION_SERVICE
+                    );
+                    Intent notifIntent = new Intent(getContext(), HomePage.class);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, notifIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.setContentIntent(pendingIntent);
+                    notificationManager.notify(0, builder.build());
+                }
             }
         });
     }

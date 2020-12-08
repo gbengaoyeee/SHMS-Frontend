@@ -27,7 +27,6 @@ public class ReadingsActivity extends AppCompatActivity {
 
         if(getIntent().getExtras() != null) {
             selectedDevice = (Device) getIntent().getParcelableExtra("device");
-            Toast.makeText(this, selectedDevice.device_code, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -36,19 +35,16 @@ public class ReadingsActivity extends AppCompatActivity {
         super.onStart();
         selectedDevice.observeDevice(new DatabaseObserveHandler() {
             @Override
-            public void onChange(Map<String, String> data) {
-                if(data.containsKey("gas")){
-                    String gasText = data.get("gas") + " - Normal";
-                    gasReading.setText(gasText);
+            public void onChange(Device device, boolean danger) {
+                if(danger){
+                    Toast.makeText(ReadingsActivity.this, "THERE IS DANGER", Toast.LENGTH_LONG).show();
                 }
-                if(data.containsKey("humidity")){
-                    String humidityText = data.get("humidity") + " - Normal";
-                    humidityReading.setText(humidityText);
-                }
-                if(data.containsKey("temperature")){
-                    String temperatureText = data.get("temperature") + " - Normal";
-                    temperatureReading.setText(temperatureText);
-                }
+                String gasText = device.gas + " - Normal";
+                String humidityText = device.humidity + " - Normal";
+                String temperatureText = device.temperature + " - Normal";
+                gasReading.setText(gasText);
+                humidityReading.setText(humidityText);
+                temperatureReading.setText(temperatureText);
             }
         });
     }

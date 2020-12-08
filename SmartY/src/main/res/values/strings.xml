@@ -34,4 +34,6 @@
     <string name="fb_login_protocol_scheme" translatable="false">fb657298138273401</string>
     <string name="newDeviceAddedString">Added new device</string>
     <string name="addingNewDeviceErrorMsg">Could not add device. Please check the device registration code</string>
+    <string name="deviceDangerLevelString">Danger</string>
+    <string name="deviceNormalLevelString">Normal</string>
 </resources>

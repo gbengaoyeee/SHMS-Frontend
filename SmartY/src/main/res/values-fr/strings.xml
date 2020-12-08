@@ -31,4 +31,6 @@
     <string name="emptyCreds">Veuillez vous assurer que touts les champs sont remplis</string>
     <string name="newDeviceAddedString">a ajouté un nouvel appareil</string>
     <string name="addingNewDeviceErrorMsg">Impossible d\'ajouter l\'appareil. Veuillez vérifier le code d\'enregistrement de l\'appareil</string>
+    <string name="deviceDangerLevelString">Danger</string>
+    <string name="deviceNormalLevelString">Ordinaire</string>
 </resources>
