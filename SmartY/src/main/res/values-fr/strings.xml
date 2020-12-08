@@ -36,4 +36,6 @@
     <string name="removeDeviceConfirmationMsg">Voulez-vous supprimer cet appareil?</string>
     <string name="removedDeviceMsg">a été supprimé</string>
     <string name="snackBarDismissString">rejeter</string>
+    <string name="logoutString">Déconneter</string>
+    <string name="quitAppMsg">Voulez-vous quitter Smarty?</string>
 </resources>

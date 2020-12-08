@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import smart.home.monitor.R;
 import smart.home.monitor.models.User;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -271,6 +273,30 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.quitAppMsg)
+                .setPositiveButton(R.string.yesString, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // TO-DO
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.noString, null);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Process.killProcess(Process.myPid());
     }
 
     /**
