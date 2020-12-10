@@ -115,24 +115,18 @@ public class Device implements Parcelable {
                     public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                         if(snapshot.getKey().equals("gas")){
                             gas = (Long) snapshot.getValue();
+                            if(gas > 100)
+                                handler.onChange(Device.this, true);
                         }
                         if(snapshot.getKey().equals("humidity")){
                             humidity = (Long) snapshot.getValue();
+                            if(!(humidity > 20 && humidity < 100))
+                                handler.onChange(Device.this, true);
                         }
                         if(snapshot.getKey().equals("temperature")){
                             temperature = (Long) snapshot.getValue();
-                        }
-
-                        boolean gasBool = gas > 100;
-                        boolean humidityBool = (humidity < 20 || humidity > 100);
-                        boolean temperatureBool = (temperature < 15 || temperature > 50);
-                        System.out.println("Gas:"+gasBool);
-                        System.out.println("Humid:"+humidityBool);
-                        System.out.println("Temp"+temperatureBool);
-                        if(gasBool || humidityBool || temperatureBool){
-                            handler.onChange(Device.this, true);
-                        } else {
-                            handler.onChange(Device.this, false);
+                            if(!(temperature > 15 && temperature < 50))
+                                handler.onChange(Device.this, true);
                         }
                     }
 

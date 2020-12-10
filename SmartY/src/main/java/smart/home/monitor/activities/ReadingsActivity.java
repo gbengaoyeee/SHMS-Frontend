@@ -38,9 +38,6 @@ public class ReadingsActivity extends AppCompatActivity {
         selectedDevice.observeDevice(new DatabaseObserveHandler() {
             @Override
             public void onChange(Device device, boolean danger) {
-                if(danger){
-                    Toast.makeText(ReadingsActivity.this, "THERE IS DANGER", Toast.LENGTH_LONG).show();
-                }
                 String gasText = device.gas + " - Normal";
                 String humidityText = device.humidity + " - Normal";
                 String temperatureText = device.temperature + " - Normal";
