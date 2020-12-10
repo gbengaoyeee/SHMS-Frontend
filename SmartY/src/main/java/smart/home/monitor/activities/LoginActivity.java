@@ -153,8 +153,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        savelogin=sharedPreferences.getBoolean("savelogin",true);
+        savelogin=sharedPreferences.getBoolean("savelogin",false);
         if(savelogin==true){
+            savelogincheckbox.setChecked(true);
             emailET.setText(sharedPreferences.getString("email",null));
             passwordET.setText(sharedPreferences.getString("password",null));
         }
@@ -248,8 +249,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signInWithEmail(emailET.getText().toString(), passwordET.getText().toString());
-
-               progressBar2.setVisibility(View.VISIBLE);
+                handleRemeberMe();
+                progressBar2.setVisibility(View.VISIBLE);
 
             }
         });
@@ -300,7 +301,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    public void signInBtn(){
+    public void handleRemeberMe(){
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
 
@@ -311,9 +312,10 @@ public class LoginActivity extends AppCompatActivity {
             editor.commit();
 
         }else{
-
-            Toast.makeText(LoginActivity.this, "user not saved",
-                    Toast.LENGTH_SHORT).show();
+            editor.remove("savelogin");
+            editor.remove("email");
+            editor.remove("password");
+            editor.commit();
         }
 
     }
