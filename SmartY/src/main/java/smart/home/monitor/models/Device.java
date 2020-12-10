@@ -18,7 +18,9 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public class Device implements Parcelable {
     public String device_code;
     public String device_name;

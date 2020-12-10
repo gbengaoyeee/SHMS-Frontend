@@ -8,7 +8,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public class SplashScreen extends AppCompatActivity {
 
     FirebaseAuth mAuth;

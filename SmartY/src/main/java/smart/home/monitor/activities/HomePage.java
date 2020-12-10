@@ -28,7 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public class HomePage extends AppCompatActivity {
     private androidx.appcompat.widget.Toolbar homeToolBar;
     private ViewPager homeViewPager;

@@ -4,7 +4,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.security.MessageDigest;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public class User {
     public String name;
     public String email;

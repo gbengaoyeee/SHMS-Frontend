@@ -16,6 +16,9 @@ import smart.home.monitor.R;
 import smart.home.monitor.models.DatabaseWriteHandler;
 import smart.home.monitor.models.Device;
 
+/**
+ * @Team_Name: SMARTY
+ */
 public class HomeAddDeviceFragment extends Fragment {
     EditText deviceCodeET, deviceNameET;
     Button addDeviceBtn;

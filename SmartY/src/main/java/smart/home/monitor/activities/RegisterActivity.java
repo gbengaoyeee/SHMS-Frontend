@@ -22,7 +22,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import smart.home.monitor.R;
 import smart.home.monitor.models.User;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText nameET, emailET, passwordET;

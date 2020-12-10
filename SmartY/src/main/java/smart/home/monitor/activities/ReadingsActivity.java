@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import smart.home.monitor.R;
 import smart.home.monitor.models.DatabaseObserveHandler;
 import smart.home.monitor.models.Device;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public class ReadingsActivity extends AppCompatActivity {
     TextView temperatureReading, gasReading, humidityReading;
     Device selectedDevice;

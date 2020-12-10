@@ -1,7 +1,8 @@
 package smart.home.monitor.models;
 
-import java.util.Map;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public interface DatabaseWriteHandler<T> {
     void onSuccess(boolean success);
     void onFailure(Exception e);

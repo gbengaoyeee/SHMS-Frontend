@@ -40,7 +40,9 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.GoogleAuthProvider;
-
+/**
+ * @Team_Name: SMARTY
+ */
 public class LoginActivity extends AppCompatActivity {
     int RC_SIGN_IN=264;
     String TAG="Google sign in";
