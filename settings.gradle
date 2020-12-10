@@ -1,0 +1,2 @@
+include ':SmartY'
+rootProject.name = "smart_home_monitor"

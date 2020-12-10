@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryGreen">#1EA13B</color>
+    <color name="primaryLogoColor">#ECF0ED</color>
+    <color name="primaryWhite">#FFFFFF</color>
+    <color name="primaryBlack">#000000</color>
+    <color name="primaryGreyOne">#9D9898</color>
+    <color name="primaryGreyTwo">#7B7B7B</color>
+    <color name="primaryGreyThree">#626262</color>
+    <color name="editTextColor">#D9D7D7</color>
+</resources>

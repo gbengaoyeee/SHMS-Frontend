@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Smarty</string>
+    <string name="loginTitle">Welcome to Smarty</string>
+    <string name="loginSubTitle">Please sign in to view your devices</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="forgotPasswordString">Forgot password?</string>
+    <string name="signInBtnString">Sign In</string>
+    <string name="orString">OR</string>
+    <string name="signInFacebookDesc" translatable="false">Sign in with facebook logo</string>
+    <string name="signInGoogleDesc" translatable="false">Sign in with google logo</string>
+    <string name="dontHaveAccountString">Don\'t have an account?</string>
+    <string name="createAccountString">Create account</string>
+    <string name="nameHint">Name</string>
+    <string name="registerBtnString">Create Account</string>
+    <string name="registerSubTitle">Enter your information to create an account</string>
+    <string name="registerPageToolbarTitle">Register</string>
+    <string name="tabItem1String">Devices</string>
+    <string name="tabItem2String">Add Device</string>
+    <string name="addDeviceSubHeaderString">Add a new device by entering the device id and name of device</string>
+    <string name="addDeviceHeaderString">Add a device</string>
+    <string name="registrationCodeHint">Device registration code</string>
+    <string name="deviceNameHint">Device Name eg. "John's Room"</string>
+    <string name="addDeviceBtnString">Add Device</string>
+    <string name="logoutMsg">Logout?</string>
+    <string name="yesString">Yes</string>
+    <string name="noString">No</string>
+    <string name="signUpSuccessMsg">Sign up successful!</string>
+    <string name="signUpFailureMsg">Could not create an account</string>
+    <string name="okString">OK</string>
+    <string name="signInFailureMsg">Could not sign in. Please check your credentials</string>
+    <string name="emptyCreds">Please make sure all fields are filled</string>
+    <string name="facebook_app_id" translatable="false">657298138273401</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb657298138273401</string>
+    <string name="newDeviceAddedString">Added new device</string>
+    <string name="addingNewDeviceErrorMsg">Could not add device. Please check the device registration code</string>
+    <string name="deviceDangerLevelString">Danger</string>
+    <string name="deviceNormalLevelString">Normal</string>
+    <string name="removeDeviceConfirmationMsg">Do you want to remove this device?</string>
+    <string name="removedDeviceMsg">has been removed</string>
+    <string name="snackBarDismissString">Dismiss</string>
+    <string name="logoutString">Logout</string>
+    <string name="quitAppMsg">Do you want to quit the Smarty?</string>
+</resources>
