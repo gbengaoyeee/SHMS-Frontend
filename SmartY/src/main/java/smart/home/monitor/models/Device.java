@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 public class Device implements Parcelable {
     public String device_code;
     public String device_name;
-    public long temperature=0, gas=0, humidity=0;
+    public Double temperature, gas, humidity;
     private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference deviceReference;
     private DatabaseReference allDevicesRef;
@@ -38,17 +38,17 @@ public class Device implements Parcelable {
     public Device(String device_code, String device_name){
         this.device_code = device_code;
         this.device_name = device_name;
-        this.temperature = 0;
-        this.gas = 0;
-        this.humidity = 0;
+        this.temperature = 0.0;
+        this.gas = 0.0;
+        this.humidity = 0.0;
     }
 
     protected Device(Parcel in) {
         device_code = in.readString();
         device_name = in.readString();
-        temperature = in.readInt();
-        gas = in.readInt();
-        humidity = in.readInt();
+        temperature = in.readDouble();
+        gas = in.readDouble();
+        humidity = in.readDouble();
     }
 
     public static final Creator<Device> CREATOR = new Creator<Device>() {
@@ -104,13 +104,13 @@ public class Device implements Parcelable {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                         if(snapshot.getKey().equals("gas")){
-                            gas = (Long) snapshot.getValue();
+                            gas = snapshot.getValue(Double.class);
                         }
                         if(snapshot.getKey().equals("humidity")){
-                            humidity = (Long) snapshot.getValue();
+                            humidity = snapshot.getValue(Double.class);
                         }
                         if(snapshot.getKey().equals("temperature")){
-                            temperature = (Long) snapshot.getValue();
+                            temperature = snapshot.getValue(Double.class);
                         }
 
                         handler.onChange(Device.this, false);
@@ -119,19 +119,28 @@ public class Device implements Parcelable {
                     @Override
                     public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                         if(snapshot.getKey().equals("gas")){
-                            gas = (Long) snapshot.getValue();
-                            if(gas > 100)
-                                handler.onChange(Device.this, true);
+                            gas = snapshot.getValue(Double.class);
+                            boolean gas_danger = false;
+                            if(gas > 100) {
+                                gas_danger = true;
+                            }
+                            handler.onChange(Device.this, gas_danger);
                         }
                         if(snapshot.getKey().equals("humidity")){
-                            humidity = (Long) snapshot.getValue();
-                            if(!(humidity > 20 && humidity < 100))
-                                handler.onChange(Device.this, true);
+                            humidity = snapshot.getValue(Double.class);
+                            boolean hum_danger = false;
+                            if(!(humidity > 20 && humidity < 100)) {
+                                hum_danger = true;
+                            }
+                            handler.onChange(Device.this, hum_danger);
                         }
                         if(snapshot.getKey().equals("temperature")){
-                            temperature = (Long) snapshot.getValue();
-                            if(!(temperature > 15 && temperature < 50))
-                                handler.onChange(Device.this, true);
+                            temperature = snapshot.getValue(Double.class);
+                            boolean temp_danger = false;
+                            if(!(temperature > 15 && temperature < 50)) {
+                                temp_danger = true;
+                            }
+                            handler.onChange(Device.this, temp_danger);
                         }
                     }
 
@@ -165,9 +174,9 @@ public class Device implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(device_code);
         parcel.writeString(device_name);
-        parcel.writeLong(temperature);
-        parcel.writeLong(gas);
-        parcel.writeLong(humidity);
+        parcel.writeDouble(temperature);
+        parcel.writeDouble(gas);
+        parcel.writeDouble(humidity);
     }
 }
 
