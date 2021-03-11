@@ -81,4 +81,51 @@
         app:layout_constraintStart_toStartOf="@+id/gasLogo"
         app:layout_constraintTop_toBottomOf="@+id/gasLogo" />
 
+    <TextView
+        android:id="@+id/resetReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:gravity="center"
+        android:text="Reset"
+        app:layout_constraintEnd_toEndOf="@+id/gasLogo"
+        app:layout_constraintStart_toStartOf="@+id/gasLogo"
+        app:layout_constraintTop_toBottomOf="@+id/gasLogo" />
+
+    <TextView
+        android:id="@+id/latitudeReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Latitude"
+        app:layout_constraintEnd_toEndOf="@+id/resetReading"
+        app:layout_constraintStart_toStartOf="@+id/resetReading"
+        app:layout_constraintTop_toBottomOf="@+id/resetReading" />
+
+    <TextView
+        android:id="@+id/longitudeReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Longitude"
+        app:layout_constraintEnd_toEndOf="@+id/latitudeReading"
+        app:layout_constraintStart_toStartOf="@+id/latitudeReading"
+        app:layout_constraintTop_toBottomOf="@+id/latitudeReading" />
+
+    <Button
+        android:id="@+id/resetButton"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="Reset"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/longitudeReading"
+        app:layout_constraintEnd_toStartOf="@+id/latitudeReading"
+        app:layout_constraintTop_toTopOf="@+id/resetReading"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

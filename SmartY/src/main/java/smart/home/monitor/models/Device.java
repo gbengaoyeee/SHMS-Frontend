@@ -26,6 +26,7 @@ public class Device implements Parcelable {
     public String device_code;
     public String device_name;
     public Double temperature, gas, humidity, lat, lon;
+    public Integer reset;
     private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference deviceReference;
     private DatabaseReference allDevicesRef;
@@ -43,6 +44,7 @@ public class Device implements Parcelable {
         this.humidity = 0.0;
         this.lat = 0.0;
         this.lon = 0.0;
+        this.reset = 0;
     }
 
     protected Device(Parcel in) {
@@ -53,6 +55,7 @@ public class Device implements Parcelable {
         humidity = in.readDouble();
         lat = in.readDouble();
         lon = in.readDouble();
+        reset = in.readInt();
     }
 
     public static final Creator<Device> CREATOR = new Creator<Device>() {
@@ -83,6 +86,7 @@ public class Device implements Parcelable {
                     deviceReference.child("temperature").setValue(15 + rand.nextInt(50));
                     deviceReference.child("lat").setValue(43.63438);
                     deviceReference.child("lon").setValue(-79.54087);
+                    deviceReference.child("reset").setValue(0);
                     handler.onSuccess(true);
                 } else {
                     handler.onSuccess(false);
@@ -94,6 +98,18 @@ public class Device implements Parcelable {
 
             }
         });
+    }
+
+    //simple function to alter value of reset
+    public void alterReset(int option){
+        FirebaseUser currUser = mAuth.getCurrentUser();
+        this.allDevicesRef = mDB.child("devices/"+ device_code);
+        this.deviceReference = mDB.child("users/" + User.getSha256(currUser.getEmail())).child("devices/" + this.device_code);
+
+        if(option == 1)
+            deviceReference.child("reset").setValue(1);
+        else
+            deviceReference.child("reset").setValue(0);
     }
 
     public void removeDeviceFromDB(){
@@ -123,6 +139,9 @@ public class Device implements Parcelable {
                         }
                         if(snapshot.getKey().equals("lon")){
                             lon = snapshot.getValue(Double.class);
+                        }
+                        if(snapshot.getKey().equals("reset")){
+                            reset = snapshot.getValue(Integer.class);
                         }
 
                         handler.onChange(Device.this, false);
@@ -162,6 +181,13 @@ public class Device implements Parcelable {
                             lon = snapshot.getValue(Double.class);
                             handler.onChange(Device.this,false);
                         }
+                        if(snapshot.getKey().equals("reset")){
+                            reset = snapshot.getValue(Integer.class);
+                            if(reset == 1)
+                                handler.onChange(Device.this,false);
+                            else
+                                handler.onChange(Device.this,false);
+                        }
                     }
 
                     @Override
@@ -199,6 +225,7 @@ public class Device implements Parcelable {
         parcel.writeDouble(humidity);
         parcel.writeDouble(lat);
         parcel.writeDouble(lon);
+        parcel.writeInt(reset);
     }
 }
 
