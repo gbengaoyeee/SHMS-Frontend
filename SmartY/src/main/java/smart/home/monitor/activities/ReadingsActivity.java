@@ -41,9 +41,25 @@ public class ReadingsActivity extends AppCompatActivity {
                 String gasText = device.gas + " - Normal";
                 String humidityText = device.humidity + " - Normal";
                 String temperatureText = device.temperature + " - Normal";
+                String latText = "Latitude: " + device.lat;//latitude
+                String lonText = "Longitude: " + device.lon;//longitude
                 gasReading.setText(gasText);
                 humidityReading.setText(humidityText);
                 temperatureReading.setText(temperatureText);
+
+                //testing to see if lat shows up via toast
+                Toast.makeText(getApplicationContext(),latText + " " + lonText,Toast.LENGTH_LONG).show();
+
+                // removing "normal" from string if danger
+                if(danger){
+                    Toast.makeText(getApplicationContext(),"There is a problem!!!",Toast.LENGTH_LONG).show();
+                    gasText = device.gas.toString();
+                    humidityText = device.humidity.toString();
+                    temperatureText = device.temperature.toString();
+                    gasReading.setText(gasText);
+                    humidityReading.setText(humidityText);
+                    temperatureReading.setText(temperatureText);
+                }
             }
         });
     }

@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 public class Device implements Parcelable {
     public String device_code;
     public String device_name;
-    public Double temperature, gas, humidity;
+    public Double temperature, gas, humidity, lat, lon;
     private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference deviceReference;
     private DatabaseReference allDevicesRef;
@@ -41,6 +41,8 @@ public class Device implements Parcelable {
         this.temperature = 0.0;
         this.gas = 0.0;
         this.humidity = 0.0;
+        this.lat = 0.0;
+        this.lon = 0.0;
     }
 
     protected Device(Parcel in) {
@@ -49,6 +51,8 @@ public class Device implements Parcelable {
         temperature = in.readDouble();
         gas = in.readDouble();
         humidity = in.readDouble();
+        lat = in.readDouble();
+        lon = in.readDouble();
     }
 
     public static final Creator<Device> CREATOR = new Creator<Device>() {
@@ -77,6 +81,8 @@ public class Device implements Parcelable {
                     deviceReference.child("gas").setValue(rand.nextInt(100));
                     deviceReference.child("humidity").setValue(20 + rand.nextInt(100));
                     deviceReference.child("temperature").setValue(15 + rand.nextInt(50));
+                    deviceReference.child("lat").setValue(43.63438);
+                    deviceReference.child("lon").setValue(-79.54087);
                     handler.onSuccess(true);
                 } else {
                     handler.onSuccess(false);
@@ -112,6 +118,12 @@ public class Device implements Parcelable {
                         if(snapshot.getKey().equals("temperature")){
                             temperature = snapshot.getValue(Double.class);
                         }
+                        if(snapshot.getKey().equals("lat")){
+                            lat = snapshot.getValue(Double.class);
+                        }
+                        if(snapshot.getKey().equals("lon")){
+                            lon = snapshot.getValue(Double.class);
+                        }
 
                         handler.onChange(Device.this, false);
                     }
@@ -141,6 +153,14 @@ public class Device implements Parcelable {
                                 temp_danger = true;
                             }
                             handler.onChange(Device.this, temp_danger);
+                        }
+                        if(snapshot.getKey().equals("lat")){
+                            lat = snapshot.getValue(Double.class);
+                            handler.onChange(Device.this, false);
+                        }
+                        if(snapshot.getKey().equals("lon")){
+                            lon = snapshot.getValue(Double.class);
+                            handler.onChange(Device.this,false);
                         }
                     }
 
@@ -177,6 +197,8 @@ public class Device implements Parcelable {
         parcel.writeDouble(temperature);
         parcel.writeDouble(gas);
         parcel.writeDouble(humidity);
+        parcel.writeDouble(lat);
+        parcel.writeDouble(lon);
     }
 }
 
