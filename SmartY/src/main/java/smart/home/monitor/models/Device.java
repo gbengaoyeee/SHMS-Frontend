@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 public class Device implements Parcelable {
     public String device_code;
     public String device_name;
-    public Double temperature, gas, humidity, lat, lon;
+    public Double temperature, gas, humidity, lat, lat_home, lon, lon_home;
     public Integer reset;
     private DatabaseReference mDB = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference deviceReference;
@@ -43,7 +43,9 @@ public class Device implements Parcelable {
         this.gas = 0.0;
         this.humidity = 0.0;
         this.lat = 0.0;
+        this.lat_home = 0.0;
         this.lon = 0.0;
+        this.lon_home = 0.0;
         this.reset = 0;
     }
 
@@ -54,7 +56,9 @@ public class Device implements Parcelable {
         gas = in.readDouble();
         humidity = in.readDouble();
         lat = in.readDouble();
+        lat_home = in.readDouble();
         lon = in.readDouble();
+        lon_home = in.readDouble();
         reset = in.readInt();
     }
 
@@ -85,7 +89,9 @@ public class Device implements Parcelable {
                     deviceReference.child("humidity").setValue(20 + rand.nextInt(100));
                     deviceReference.child("temperature").setValue(15 + rand.nextInt(50));
                     deviceReference.child("lat").setValue(43.63438);
+                    deviceReference.child("lat_home").setValue(0);
                     deviceReference.child("lon").setValue(-79.54087);
+                    deviceReference.child("lon_home").setValue(0);
                     deviceReference.child("reset").setValue(0);
                     handler.onSuccess(true);
                 } else {
@@ -110,6 +116,18 @@ public class Device implements Parcelable {
             deviceReference.child("reset").setValue(1);
         else
             deviceReference.child("reset").setValue(0);
+    }
+
+    //function to set new home lat/lon values
+    public void setHomeLocation(){
+        FirebaseUser currUser = mAuth.getCurrentUser();
+        this.allDevicesRef = mDB.child("devices/"+ device_code);
+        this.deviceReference = mDB.child("users/" + User.getSha256(currUser.getEmail())).child("devices/" + this.device_code);
+
+        //set new lat value based on current lat
+        deviceReference.child("lat_home").setValue(lat);
+        //set new lon value based on current lon
+        deviceReference.child("lon_home").setValue(lon);
     }
 
     public void removeDeviceFromDB(){
@@ -137,8 +155,14 @@ public class Device implements Parcelable {
                         if(snapshot.getKey().equals("lat")){
                             lat = snapshot.getValue(Double.class);
                         }
+                        if(snapshot.getKey().equals("lat_home")){
+                            lat_home = snapshot.getValue(Double.class);
+                        }
                         if(snapshot.getKey().equals("lon")){
                             lon = snapshot.getValue(Double.class);
+                        }
+                        if(snapshot.getKey().equals("lon_home")){
+                            lon_home = snapshot.getValue(Double.class);
                         }
                         if(snapshot.getKey().equals("reset")){
                             reset = snapshot.getValue(Integer.class);
@@ -177,16 +201,22 @@ public class Device implements Parcelable {
                             lat = snapshot.getValue(Double.class);
                             handler.onChange(Device.this, false);
                         }
+                        if(snapshot.getKey().equals("lat_home")){
+                            lat_home = snapshot.getValue(Double.class);
+                            handler.onChange(Device.this, false);
+                        }
                         if(snapshot.getKey().equals("lon")){
                             lon = snapshot.getValue(Double.class);
                             handler.onChange(Device.this,false);
                         }
+                        if(snapshot.getKey().equals("lon_home")){
+                            lon_home = snapshot.getValue(Double.class);
+                            handler.onChange(Device.this,false);
+                        }
                         if(snapshot.getKey().equals("reset")){
                             reset = snapshot.getValue(Integer.class);
-                            if(reset == 1)
-                                handler.onChange(Device.this,false);
-                            else
-                                handler.onChange(Device.this,false);
+                            handler.onChange(Device.this,false);
+
                         }
                     }
 
@@ -224,7 +254,9 @@ public class Device implements Parcelable {
         parcel.writeDouble(gas);
         parcel.writeDouble(humidity);
         parcel.writeDouble(lat);
+        parcel.writeDouble(lat_home);
         parcel.writeDouble(lon);
+        parcel.writeDouble(lon_home);
         parcel.writeInt(reset);
     }
 }
