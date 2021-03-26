@@ -24,10 +24,10 @@ public class User {
     public void writeNewUserToDB(){
         mDB.child("users").child(User.getSha256(email)).setValue(this);
     }
-    public static String getSha256(String value) {
+    public static String getSha256(String email) {
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(value.getBytes());
+            md.update(email.getBytes());
             return bytesToHex(md.digest()).substring(0, 8);
         } catch(Exception ex){
             throw new RuntimeException(ex);

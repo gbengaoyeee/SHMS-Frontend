@@ -65,14 +65,18 @@ public class Device implements Parcelable {
 
     public void writeNewDeviceToDB(final DatabaseWriteHandler<Boolean> handler){
         final Random rand = new Random();
-        FirebaseUser currUser = mAuth.getCurrentUser();
+        final FirebaseUser currUser = mAuth.getCurrentUser();
         this.allDevicesRef = mDB.child("devices/"+ device_code);
         this.deviceReference = mDB.child("users/" + User.getSha256(currUser.getEmail())).child("devices/" + this.device_code);
         allDevicesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists() && (Boolean) snapshot.getValue()){ // Write to database
-                    allDevicesRef.setValue(false);
+                    // Sets this device as registered by a user
+                    allDevicesRef.child("isAvailable").setValue(false);
+                    allDevicesRef.child("owner").setValue(User.getSha256(currUser.getEmail()));
+
+                    // Adds this device in the user's devices list
                     deviceReference.setValue(Device.this);
                     deviceReference.child("gas").setValue(rand.nextInt(100));
                     deviceReference.child("humidity").setValue(20 + rand.nextInt(100));
