@@ -137,7 +137,9 @@ public class Device implements Parcelable {
     public void removeDeviceFromDB(){
         this.deviceReference.removeValue();
         this.allDevicesRef = mDB.child("devices/"+ device_code);
-        allDevicesRef.setValue(true);
+        // Sets this device as free to be used by another user
+        allDevicesRef.child("isAvailable").setValue(true);
+        allDevicesRef.child("owner").setValue(null);
     }
 
     public void observeDevice(final DatabaseObserveHandler handler){
