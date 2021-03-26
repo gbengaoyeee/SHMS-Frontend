@@ -81,4 +81,116 @@
         app:layout_constraintStart_toStartOf="@+id/gasLogo"
         app:layout_constraintTop_toBottomOf="@+id/gasLogo" />
 
+    <TextView
+        android:id="@+id/resetReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:gravity="center"
+        android:text="Reset"
+        app:layout_constraintEnd_toEndOf="@+id/gasLogo"
+        app:layout_constraintStart_toStartOf="@+id/gasLogo"
+        app:layout_constraintTop_toBottomOf="@+id/gasLogo" />
+
+    <TextView
+        android:id="@+id/latitudeReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Latitude"
+        app:layout_constraintEnd_toEndOf="@+id/resetReading"
+        app:layout_constraintStart_toStartOf="@+id/resetReading"
+        app:layout_constraintTop_toBottomOf="@+id/resetReading" />
+
+    <TextView
+        android:id="@+id/longitudeReading"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Longitude"
+        app:layout_constraintEnd_toEndOf="@+id/latitudeReading"
+        app:layout_constraintStart_toStartOf="@+id/latitudeReading"
+        app:layout_constraintTop_toBottomOf="@+id/latitudeReading" />
+
+    <TextView
+        android:id="@+id/latitudeHome"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:text="Home Lat"
+        app:layout_constraintBottom_toBottomOf="@+id/setHomeLocationButton"
+        app:layout_constraintStart_toEndOf="@+id/setHomeLocationButton"
+        app:layout_constraintTop_toTopOf="@+id/setHomeLocationButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/longitudeHome"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Home Long"
+        app:layout_constraintEnd_toEndOf="@+id/latitudeHome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/latitudeHome"
+        app:layout_constraintTop_toBottomOf="@+id/latitudeHome" />
+
+    <TextView
+        android:id="@+id/locationStatus"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Location: "
+        app:layout_constraintEnd_toEndOf="@+id/distance"
+        app:layout_constraintTop_toBottomOf="@id/distance"
+        app:layout_constraintStart_toStartOf="@+id/distance"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <TextView
+        android:id="@+id/distance"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:text="Distance(m): "
+        app:layout_constraintBottom_toBottomOf="@+id/locationStatus"
+        app:layout_constraintEnd_toEndOf="@+id/longitudeHome"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/longitudeHome"
+        app:layout_constraintTop_toBottomOf="@+id/longitudeHome"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/resetButton"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="Reset"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/longitudeReading"
+        app:layout_constraintEnd_toStartOf="@+id/latitudeReading"
+        app:layout_constraintTop_toTopOf="@+id/resetReading"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/setHomeLocationButton"
+        style="@style/ReadingsSubtitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="Set home"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/temperatureLogo"
+        app:layout_constraintEnd_toEndOf="@+id/temperatureLogo"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
